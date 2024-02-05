@@ -1,0 +1,15 @@
+# ninja log v5
+3	715	7285752733925637	CMakeFiles/Work.dir/Work/Board.cpp.obj	6e0031fdb32f230c
+1	589	7287482207053018	build.ninja	ee1017845ef39afb
+3	1158	7287481653844141	Work.exe	7afc65cee88dbedb
+1	2707	7285725358914758	CMakeFiles/Work.dir/Work/main.cpp.obj	131091b771eb6593
+17	824	7285725340058151	CMakeFiles/Work.dir/Work/Knight.cpp.obj	4275808e10d25de8
+38	1227	7285725344093239	CMakeFiles/Work.dir/Work/Bishop.cpp.obj	8f746f48aa913a63
+21	1288	7285725344725296	CMakeFiles/Work.dir/Work/Rook.cpp.obj	4c4d0fdd5949d5a5
+26	1229	7285725344115751	CMakeFiles/Work.dir/Work/Pawn.cpp.obj	c2556f496e3675eb
+44	1216	7285725343979018	CMakeFiles/Work.dir/Work/King.cpp.obj	34971d06f380a9ab
+33	1025	7285725342070021	CMakeFiles/Work.dir/Work/Queen.cpp.obj	f202ea6391372da3
+12	1203	7285725343857833	CMakeFiles/Work.dir/Work/Figure.cpp.obj	4957af571826b19c
+3	2038	7285757495260340	CMakeFiles/Work.dir/Work/Game.cpp.obj	947a14c017b9bd50
+3	1535	7285761623024520	CMakeFiles/Work.dir/Work/StockFish.cpp.obj	530807d167d7fb1f
+3	758	7287482237566090	Work.exe	4e2b9616cda38dae

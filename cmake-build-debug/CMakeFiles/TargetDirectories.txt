@@ -1,0 +1,3 @@
+D:/MyChees/cmake-build-debug/CMakeFiles/Work.dir
+D:/MyChees/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/MyChees/cmake-build-debug/CMakeFiles/rebuild_cache.dir
