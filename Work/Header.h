@@ -8,6 +8,7 @@
 #include <vector>
 #include "Exceptions.h"
 
+
 const int SIZEBOARD = 8;
 // Типы фигур
 enum class TypeFigure{
@@ -17,6 +18,11 @@ enum class TypeFigure{
     Rook,
     Queen,
     King
+};
+
+enum class NetworkClient{
+    Host,
+    Client
 };
 // Кнопки стартового меню
 enum class SelectStartMenu{

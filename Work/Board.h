@@ -61,6 +61,7 @@ public:
     void pawnPromotion(sf::RenderWindow& window,Coordinates& coordinates);  // Проход пешки
     void drawBoard(sf::RenderWindow& window);           // Отрисовка игровой доски
     void drawAvailableMove(sf::RenderWindow& window, const std::vector<Coordinates>& availableMove);    // отрисовка доступных ходов
+    void moveTransition()   {   whiteMoveNow = !whiteMoveNow;  }                // Передача хода
 
 private:
     bool checkOnDraw();                                 // Проверка на ничью
@@ -68,7 +69,6 @@ private:
     void changeSpecialCondition(Coordinates& oldCoordinates,Coordinates& newCoordinates);   // Изменить спец. состояние фигур
     void captureEnPassant(Coordinates& oldCoord,Coordinates& newCoord);         // взятие на проходе
     void castling(Coordinates& oldCoord, Coordinates& newCoord);                // Рокировка
-    void moveTransition()   {   whiteMoveNow = !whiteMoveNow;  }                // Передача хода
 
 };
 

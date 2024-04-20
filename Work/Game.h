@@ -9,8 +9,16 @@
 #include "iostream"
 #include "StockFish.h"
 #include <fstream>
+#include <thread>
 #include "ImageMenu.h"
-
+#include <condition_variable>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include "pthread.h"
+#include <csignal>
+#include <atomic>
+#include <mutex>
+#define PORT 9999
 
 class Game {
 private:
@@ -22,6 +30,12 @@ private:
     sf::Event event{};                                    // Обработчик событий
     ImageMenu texture;                                  // изображения
     bool opponentComputer{};                            // установка компьютера соперником
+
+    std::mutex mutex;
+    int clientSocket{};
+//    const int PORT = 9999;
+    std::thread threadForNetwork; // Переменная для потока в поле класса
+
 public:
     void start();                                       // начало игры
     Game() = default;
@@ -29,10 +43,18 @@ public:
 private:
     void newGameWithComputer();                         // начать новую игру с компьютером
     void newGameWithFriend();                           // начать новую игру с другим игроком
+    void newOnlineGame();
     void restoreGameWithFriend();                       // восстановить игру с игроком
     void restoreGameWithComputer();                     // восстановить игру с компьютером
     void processWatchGame();                            // просмотр сохраненных игр
+
     void changeStyle();                                 // Change white or dark style
+
+    void* establishConnectionHost(int* serverSocket, int* result);
+    bool establishConnectionClient();
+    void startNetwork(NetworkClient typeClient);
+    std::string getIpAddress();
+
 
     void processGameWithFriend();                       // Цикл игры с игроком
     void processGameWithComputer();                     // цикл игры с компьютером
@@ -55,11 +77,23 @@ private:
     ClickToSaveOrReturnFile clickToSaveFile();          // ввод и сохранение файла
     bool confirmation();                                // подтверждение действия
 
+    NetworkClient selectHost();
     void setDifficultyBot(int diff);                    // установить уровень игры компьютера
     void getMoveComputer(Coordinates& oldCoord, Coordinates& newCoord); // получение хода от компьютера
     void moveComputer();                                // ход компьютера
     bool waitClick();                                   // ожидание нажатия Левой кнопки мыши
 
+    bool waitConnect(NetworkClient typeClient, const int *result);
+
+    void processNetworkGame(NetworkClient typeClient, std::atomic<bool>* newMsg);
+
+    void playerAction(NetworkClient typeClient, std::atomic<bool>* newMsg);
+
+    void *waitOpponentAction(std::atomic<bool>* newMsg);
+
+    bool waitClickWithRefresh();
+
+    void drawIpConnection();
 };
 
 

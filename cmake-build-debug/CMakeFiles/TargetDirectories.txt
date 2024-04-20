@@ -1,3 +1,4 @@
-D:/MyChees/cmake-build-debug/CMakeFiles/Work.dir
-D:/MyChees/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/MyChees/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/bobr/CLionProjects/MyChees/cmake-build-debug/CMakeFiles/PlayHost.dir
+/home/bobr/CLionProjects/MyChees/cmake-build-debug/CMakeFiles/PlayClient.dir
+/home/bobr/CLionProjects/MyChees/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/bobr/CLionProjects/MyChees/cmake-build-debug/CMakeFiles/rebuild_cache.dir
