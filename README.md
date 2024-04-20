@@ -29,3 +29,4 @@ This project is licensed under the terms of [your license name]. Details can be 
 To contact me:
 - Email: vorop2004@mail.ru
 - Telegram: @Grija213
+# ChessGameForLinux
