@@ -510,7 +510,7 @@ bool Game::saveOrReturnGame(bool saveGame) {
     texture.playerText.setString(playerInput);
 
     while (window.isOpen()) {
-        switch (this->clickToSaveFile()) {          // Получить тип события
+        switch (this->clickToInputString()) {          // Получить тип события
             case ClickToSaveOrReturnFile::InputText:
                 if (playerInput.getSize() < 20)    // Если размер меньше 20 ввожу символ
                     playerInput += event.text.unicode;
@@ -547,7 +547,7 @@ bool Game::saveOrReturnGame(bool saveGame) {
 }
 
 // Ввод файла
-ClickToSaveOrReturnFile Game::clickToSaveFile() {
+ClickToSaveOrReturnFile Game::clickToInputString() {
     int sizeSaveOrExitX = 80;   // Размер кнопок "save" and "exit" по Х
     int sizeSaveOrExitY = 35;   // Размер кнопок по У
     int marginSaveX = 482;      // Отступ кнопки "save" по Х
@@ -558,7 +558,8 @@ ClickToSaveOrReturnFile Game::clickToSaveFile() {
             // Проверка диапазон нажатой клавиши
             if ((event.text.unicode >= '0' && event.text.unicode <= '9') ||
                 (event.text.unicode >= 'A' && event.text.unicode <= 'Z') ||
-                (event.text.unicode >= 'a' && event.text.unicode <= 'z'))
+                (event.text.unicode >= 'a' && event.text.unicode <= 'z') ||
+                event.text.unicode == '.')
                 return ClickToSaveOrReturnFile::InputText;
                 // Удаление символа
             else if (event.text.unicode == '\b') return ClickToSaveOrReturnFile::RemoveSymbol;
@@ -688,14 +689,13 @@ void Game::newOnlineGame() {
 }
 
 NetworkClient Game::selectHost() {
-//    this->drawGame();               // Вывод игровой доски
     this->drawStartMenu();
     int marginFirstBlockX = 505;    // Отступ кнопки "yes" по Х
     int marginSecondBlockX = 625;   // Отступ кнопки "no" по Х
     int marginBlockY = 520;         // Отступ по У
     int sizeBlockX = 70;            // Размер кнопки по Х
     int sizeBlockY = 35;            // Размер кнопки по У
-    window.draw(texture.confirmation);
+    window.draw(texture.chooseHostOrClient);
     window.display();
     while (this->waitClick()) {      // Ожидание нажатия ЛКМ
         if ((event.mouseButton.y > marginBlockY) &&
@@ -772,58 +772,42 @@ void *Game::establishConnectionHost(int* serverSocket, int *result) {
 
 bool Game::establishConnectionClient() {
     sockaddr_in serverAddress{};
-    char serverIP[20];
-    // Создание сокета
     if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         std::cerr << "Socket creation failed" << std::endl;
         return false;
     }
-    int optval = 1;
-    if (setsockopt(clientSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval)) < 0) {
-        std::cerr << "Error: Could not set SO_REUSEADDR option." << std::endl;
-        return false;
-    }
+    int optVal = 1;
+    setsockopt(clientSocket, SOL_SOCKET, SO_REUSEADDR, &optVal, sizeof(optVal));
     // Настройка сервера
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(PORT);
-    std::cout << "Input address server: ";
 
-    std::cin >> serverIP;
+    // input IP
+    return this->inputServerIp(serverAddress);
 
-    std::cout << std::endl << serverIP << std::endl;
-    // Преобразование IP-адреса из строки в структуру
-    if (inet_pton(AF_INET, serverIP, &serverAddress.sin_addr) <= 0) {
-        std::cerr << "Invalid address/ Address not supported" << std::endl;
-        return false;
-    }
-    // Подключение к серверу
-    while (connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0) {
-        std::cerr << "Connection failed" << std::endl;
-        return false;
-    }
-    return true;
 }
 
 std::string Game::getIpAddress() {
     std::string ipAddress;
     system("hostname -I > tmp.txt");
-
     std::ifstream file("tmp.txt");
     std::getline(file, ipAddress);
     file.close();
     remove("tmp.txt");
-    std::cout << ipAddress << std::endl;
     return ipAddress;
 }
 
-bool Game::waitConnect(NetworkClient typeClient, const int *result) {
+bool Game::waitConnect(const int *result) {
     this->drawStartMenu();               // Вывод игровой доски
-    int marginFirstBlockX = 505;    // Отступ кнопки "yes" по Х
-    int marginSecondBlockX = 625;   // Отступ кнопки "no" по Х
-    int marginBlockY = 520;         // Отступ по У
-    int sizeBlockX = 70;            // Размер кнопки по Х
-    int sizeBlockY = 35;            // Размер кнопки по У
-    window.draw(texture.confirmation);
+    int marginButtonY = 520;         // Отступ по У
+    int marginButtonX = 540;         // Отступ по У
+    int sizeButtonX = 120;            // Размер кнопки по Х
+    int sizeButtonY = 35;            // Размер кнопки по У
+    std::string myIpAddress = this->getIpAddress();
+    texture.ipAddress.setString("Your IP: " + myIpAddress);
+    texture.ipAddress.setPosition(475,465);
+    window.draw(texture.waitConnection);
+    window.draw(texture.ipAddress);
     window.display();
     while (true) {
         mutex.lock();
@@ -839,8 +823,8 @@ bool Game::waitConnect(NetworkClient typeClient, const int *result) {
         mutex.unlock();
         if (window.pollEvent(event) && event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.button == sf::Mouse::Left &&
-        (event.mouseButton.y > marginBlockY && event.mouseButton.y < marginBlockY + sizeBlockY) &&
-        (event.mouseButton.x > marginSecondBlockX && event.mouseButton.x < marginSecondBlockX + sizeBlockX)) {
+            (event.mouseButton.y > marginButtonY && event.mouseButton.y < marginButtonY + sizeButtonY) &&
+            (event.mouseButton.x > marginButtonX && event.mouseButton.x < marginButtonX + sizeButtonX)) {
             std::cout << "exitWait";
             fflush(stdout);
             return false;
@@ -855,7 +839,7 @@ void Game::startNetwork(NetworkClient typeClient) {
     if (typeClient == NetworkClient::Host) {
         int serverSocket;
         threadForNetwork = std::thread(&Game::establishConnectionHost, this, &serverSocket, &result);
-        if (!this->waitConnect(typeClient, &result)) {
+        if (!this->waitConnect(&result)) {
             std::cout << "Close";
             fflush(stdout);
             close(serverSocket);
@@ -870,7 +854,8 @@ void Game::startNetwork(NetworkClient typeClient) {
         }
         threadForNetwork.join();
     } else if (typeClient == NetworkClient::Client) {
-        this->establishConnectionClient();
+        if (!this->establishConnectionClient())
+            return;
     }
 
     board.setStateGame(StateGame::GameOn);
@@ -893,7 +878,6 @@ bool Game::waitClickWithRefresh() {
             } else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 return true;    // Если было нажатие ЛКМ - true
             }
-
         }
         this->drawGame();
         window.display();
@@ -978,6 +962,49 @@ void *Game::waitOpponentAction(std::atomic<bool>* newMsg) {
         }
         newMsg->store(true);
     }
+}
+
+bool Game::inputServerIp(sockaddr_in serverAddress) {
+    this->drawStartMenu();
+    window.draw(texture.inputIp);     // Установить текстуру ввода файла
+    window.display();
+    sf::String serverIP;                 // Отображение вводимых символов
+    texture.ipAddress.setString(serverIP);
+    texture.ipAddress.setPosition(465,458);
+
+    while (window.isOpen()) {
+        switch (this->clickToInputString()) {          // Получить тип события
+            case ClickToSaveOrReturnFile::InputText:
+                if (serverIP.getSize() < 20)    // Если размер меньше 20 ввожу символ
+                    serverIP += event.text.unicode;
+                break;
+            case ClickToSaveOrReturnFile::RemoveSymbol:
+                if (serverIP.getSize() != 0)     // Если размер не 0, то удаляю элемент
+                    serverIP.erase(serverIP.getSize() - 1, 1);
+                break;
+            case ClickToSaveOrReturnFile::Save:
+                if (inet_pton(AF_INET, serverIP.toAnsiString().c_str(), &serverAddress.sin_addr) <= 0) {
+                    std::cerr << "Invalid address/ Address not supported" << std::endl;
+                    break;
+                }
+                // Подключение к серверу
+                if (connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0) {
+                    std::cerr << "Connection failed" << std::endl;
+                    break;
+                }
+                return true;
+            case ClickToSaveOrReturnFile::Exit:
+                return false;
+            case ClickToSaveOrReturnFile::Default:
+                break;
+        }
+        this->drawStartMenu();
+        window.draw(texture.inputIp); // Вывожу текстуру ввода файла
+        texture.ipAddress.setString(serverIP);  // Вывожу введенную строку
+        window.draw(texture.ipAddress);
+        window.display();
+    }
+    return false;
 }
 
 

@@ -50,10 +50,7 @@ private:
 
     void changeStyle();                                 // Change white or dark style
 
-    void* establishConnectionHost(int* serverSocket, int* result);
-    bool establishConnectionClient();
-    void startNetwork(NetworkClient typeClient);
-    std::string getIpAddress();
+
 
 
     void processGameWithFriend();                       // Цикл игры с игроком
@@ -74,7 +71,7 @@ private:
     bool getCoordinatesPressedBox(Coordinates& coordinates) const;  // получение координат нажатой клетки
     bool clickSidebar();                                 // нажатие на боковое меню в процессе игры
     SidebarForWatch clickSidebarForWatch() const;       // нажатие на поковое меню в процессе просмотра игр
-    ClickToSaveOrReturnFile clickToSaveFile();          // ввод и сохранение файла
+    ClickToSaveOrReturnFile clickToInputString();          // ввод и сохранение файла
     bool confirmation();                                // подтверждение действия
 
     NetworkClient selectHost();
@@ -83,7 +80,12 @@ private:
     void moveComputer();                                // ход компьютера
     bool waitClick();                                   // ожидание нажатия Левой кнопки мыши
 
-    bool waitConnect(NetworkClient typeClient, const int *result);
+    void* establishConnectionHost(int* serverSocket, int* result);
+    bool establishConnectionClient();
+    void startNetwork(NetworkClient typeClient);
+    std::string getIpAddress();
+
+    bool waitConnect(const int *result);
 
     void processNetworkGame(NetworkClient typeClient, std::atomic<bool>* newMsg);
 
@@ -93,7 +95,7 @@ private:
 
     bool waitClickWithRefresh();
 
-    void drawIpConnection();
+    bool inputServerIp(sockaddr_in serverSocket);
 };
 
 

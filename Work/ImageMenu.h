@@ -8,15 +8,16 @@
 
 class ImageMenu{                // Класс изображений меню
 private:
-    sf::Texture startMenuImg,sidebarInProcessWatchImg,confirmationImg,inputFileNameImg, sidebarInProcessGameImg,sidebarEndGameImg; // текстуры
+    sf::Texture startMenuImg, sidebarInProcessWatchImg, confirmationImg, inputFileNameImg, sidebarInProcessGameImg,
+    sidebarEndGameImg, chooseHostOrClientImg, waitConnectionImg, inputIpImg; // текстуры
     bool blackStyle;
 public:
     sf::Texture player1WinImg,player2WinImg,playerWinImg,computerWinImg,drawImg;
     sf::Font fontInput,fontPlayer;                                                                      // Шрифт
     sf::Image icon;                                                                     // Иконка
-    sf::Text playerText, player1Name,player2Name;                                       // Текст
-    sf::Sprite startMenu,sidebarInProcessGame,sidebarInProcessWatch,                    // Спрайты
-    confirmation,inputFileName, sidebarEndGame,resultGame;
+    sf::Text playerText, player1Name,player2Name, ipAddress;                                       // Текст
+    sf::Sprite startMenu, sidebarInProcessGame, sidebarInProcessWatch,                    // Спрайты
+    confirmation, inputFileName, sidebarEndGame, resultGame ,  chooseHostOrClient, waitConnection, inputIp;
 
     ImageMenu(){                                       // Загрузка, установка изображений и координат
         blackStyle = true;
@@ -27,6 +28,10 @@ public:
         playerText.setFont(fontInput);
         playerText.setCharacterSize(24);
         playerText.setFillColor(sf::Color::Black);
+
+        ipAddress.setFont(fontInput);
+        ipAddress.setCharacterSize(23);
+        ipAddress.setFillColor(sf::Color::Black);
 
         player1Name.setFont(fontPlayer);
         player1Name.setCharacterSize(23);
@@ -49,6 +54,10 @@ public:
         playerWinImg.loadFromFile("image/winPlayer.png");
         drawImg.loadFromFile("image/draw.png");
 
+        chooseHostOrClientImg.loadFromFile("image/chooseHostOrClient.png");
+        waitConnectionImg.loadFromFile("image/waitConnection.png");
+        inputIpImg.loadFromFile("image/inputIp.png");
+
 
         startMenu.setTexture(startMenuImg);
         sidebarInProcessWatch.setTexture(sidebarInProcessWatchImg);
@@ -57,13 +66,22 @@ public:
         sidebarInProcessGame.setTexture(sidebarInProcessGameImg);
         sidebarEndGame.setTexture(sidebarEndGameImg);
 
+        chooseHostOrClient.setTexture(chooseHostOrClientImg);
+        waitConnection.setTexture(waitConnectionImg);
+        inputIp.setTexture(inputIpImg);
+
         startMenu.setPosition(-4,0);
         sidebarInProcessWatch.setPosition(920,0);
         sidebarEndGame.setPosition(920, 0);
         sidebarInProcessGame.setPosition(920, 0);
         confirmation.setPosition(0,0);
         inputFileName.setPosition(0,0);
+        chooseHostOrClient.setPosition(0,0);
+        waitConnection.setPosition(0,0);
+        inputIp.setPosition(0,0);
+
         playerText.setPosition(465,458);
+        ipAddress.setPosition(465,458);
 
         resultGame.setPosition(920,200);
     }
