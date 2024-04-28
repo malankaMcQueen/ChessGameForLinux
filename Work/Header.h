@@ -19,6 +19,11 @@ enum class TypeFigure{
     Queen,
     King
 };
+enum class ActionInternetOpponent{
+    Move,
+    GiveUp,
+    Exit
+};
 
 enum class NetworkClient{
     Host,
@@ -44,6 +49,11 @@ enum class ClickToSaveOrReturnFile{
     Default
 };
 // Кнопки бокового меню
+enum class SidebarInOnlineGameProcess{
+    GiveUp,
+    Save,
+    Exit
+};
 enum class SidebarInGameProcess{
     GiveUp,
     StepBack,
@@ -60,8 +70,8 @@ enum class SidebarForWatch{
 // Состояние игры
 enum class StateGame{
     GameOn,
-    Player1Win,
-    Player2Win,
+    WhiteWin,
+    BlackWin,
     Draw,
     View,
     Exit

@@ -51,8 +51,6 @@ private:
     void changeStyle();                                 // Change white or dark style
 
 
-
-
     void processGameWithFriend();                       // Цикл игры с игроком
     void processGameWithComputer();                     // цикл игры с компьютером
 
@@ -83,7 +81,7 @@ private:
     void* establishConnectionHost(int* serverSocket, int* result);
     bool establishConnectionClient();
     void startNetwork(NetworkClient typeClient);
-    std::string getIpAddress();
+    static std::string getIpAddress();
 
     bool waitConnect(const int *result);
 
@@ -91,11 +89,19 @@ private:
 
     void playerAction(NetworkClient typeClient, std::atomic<bool>* newMsg);
 
-    void *waitOpponentAction(std::atomic<bool>* newMsg);
+    void opponentAction(NetworkClient typeClient,std::atomic<bool>* newMsg);
 
-    bool waitClickWithRefresh();
+    bool waitClickWithRefresh(std::atomic<bool>* newMsg);
 
     bool inputServerIp(sockaddr_in serverSocket);
+
+//    ActionInternetOpponent waitOpponentAction(char *msg) const;
+
+    bool clickSidebarInNetworkGame(NetworkClient typeClient);
+
+    ActionInternetOpponent waitOpponentAction(std::atomic<bool> *newMsg, char *msg) const;
+
+    void endNetworkGame();
 };
 
 

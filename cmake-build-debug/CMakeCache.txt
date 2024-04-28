@@ -225,19 +225,28 @@ CourseWork_IS_TOP_LEVEL:STATIC=ON
 CourseWork_SOURCE_DIR:STATIC=/home/bobr/CLionProjects/MyChees
 
 //Path to a library.
-FLAC_LIB:FILEPATH=/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.0/lib/libFLAC.a
+FLAC_LIB:FILEPATH=FLAC_LIB-NOTFOUND
 
 //Path to a library.
-FreeType_LIB:FILEPATH=/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.0/lib/libfreetype.a
+FreeType_LIB:FILEPATH=/usr/lib64/libfreetype.so
+
+//Value Computed by CMake
+MyChess_BINARY_DIR:STATIC=/home/bobr/CLionProjects/MyChees/cmake-build-debug
+
+//Value Computed by CMake
+MyChess_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+MyChess_SOURCE_DIR:STATIC=/home/bobr/CLionProjects/MyChees
 
 //Path to a library.
-Ogg_LIB:FILEPATH=/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.0/lib/libogg.a
+Ogg_LIB:FILEPATH=Ogg_LIB-NOTFOUND
 
 //Path to a library.
-OpenAL_LIB:FILEPATH=/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.0/lib/libopenal32.a
+OpenAL_LIB:FILEPATH=OpenAL_LIB-NOTFOUND
 
 //Path to a library.
-OpenGL_LIB:FILEPATH=OpenGL_LIB-NOTFOUND
+OpenGL_LIB:FILEPATH=/usr/lib64/libOpenGL.so
 
 //The directory containing a CMake configuration file for SFML.
 SFML_DIR:PATH=SFML_DIR-NOTFOUND
@@ -246,25 +255,25 @@ SFML_DIR:PATH=SFML_DIR-NOTFOUND
 SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
 
 //Path to a library.
-UDev_LIB:FILEPATH=UDev_LIB-NOTFOUND
+UDev_LIB:FILEPATH=/usr/lib64/libudev.so
 
 //Path to a library.
-VorbisEnc_LIB:FILEPATH=/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.0/lib/libvorbisenc.a
+VorbisEnc_LIB:FILEPATH=VorbisEnc_LIB-NOTFOUND
 
 //Path to a library.
-VorbisFile_LIB:FILEPATH=/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.0/lib/libvorbisfile.a
+VorbisFile_LIB:FILEPATH=VorbisFile_LIB-NOTFOUND
 
 //Path to a library.
-Vorbis_LIB:FILEPATH=/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.0/lib/libvorbis.a
+Vorbis_LIB:FILEPATH=Vorbis_LIB-NOTFOUND
 
 //Path to a library.
-X11_LIB:FILEPATH=X11_LIB-NOTFOUND
+X11_LIB:FILEPATH=/usr/lib64/libX11.so
 
 //Path to a library.
-Xcursor_LIB:FILEPATH=Xcursor_LIB-NOTFOUND
+Xcursor_LIB:FILEPATH=/usr/lib64/libXcursor.so
 
 //Path to a library.
-Xrandr_LIB:FILEPATH=Xrandr_LIB-NOTFOUND
+Xrandr_LIB:FILEPATH=/usr/lib64/libXrandr.so
 
 
 ########################

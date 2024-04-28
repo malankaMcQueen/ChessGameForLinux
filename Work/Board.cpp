@@ -90,8 +90,8 @@ short int Board::checkOnMate() {
     }
     std::cout << "Mat";
     if (itWhiteMoveNow())        // Если сейчас ход белых,нет доступных ходов и королю угрожают, то победили черные, иначе белые
-        this->setStateGame(StateGame::Player2Win);
-    else this->setStateGame(StateGame::Player1Win);
+        this->setStateGame(StateGame::BlackWin);
+    else this->setStateGame(StateGame::WhiteWin);
     return 2;                           // Мат
 }
 
@@ -525,9 +525,9 @@ void Board::stepBack() {
     // Сдаться, присвоение победы
 void Board::giveUp() {
     if (this->itWhiteMoveNow())
-        this->setStateGame(StateGame::Player2Win);
+        this->setStateGame(StateGame::BlackWin);
     else
-        this->setStateGame(StateGame::Player1Win);
+        this->setStateGame(StateGame::WhiteWin);
 }
     // Очистка доски
 void Board::clearBoard() {

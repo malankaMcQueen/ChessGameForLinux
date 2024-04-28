@@ -4,6 +4,7 @@
 
 
 #include <fcntl.h>
+#include <cstring>
 #include "Game.h"
 
 // Главное меню
@@ -49,10 +50,14 @@ void Game::start() {
 // Новая игра с игроком
 void Game::newGameWithFriend() {
     // Установка Игроков и состояния игры на Gameon
-    this->texture.player1Name.setString("Player 1");
-    this->texture.player2Name.setString("Player 2");
-    this->texture.player1Name.setPosition(1020, 795);    // Установка координат вывода слова
-    this->texture.player2Name.setPosition(1020, 93);
+    this->texture.white.setString("White");
+    this->texture.black.setString("Black");
+    this->texture.white.setPosition(1023, 795);    // Установка координат вывода слова
+    this->texture.black.setPosition(1023, 93);
+    this->texture.nowMove.setPosition(993, 173);
+    texture.sidebarInProcessGame.setTexture(texture.sidebarInProcessGameImg);
+    texture.sidebarEndGame.setTexture(texture.sidebarEndGameImg);
+
     board.setStateGame(StateGame::GameOn);
     opponentComputer = false;                 // false - игра против друга; true - игра против компьютера
     board.setBoardByFen(board.getStartFEN());   // Установить доску в стартовое состояние
@@ -93,10 +98,10 @@ bool Game::getCoordinatesPressedBox(Coordinates &coordinates) const {
 // Запуск новой игры против компьютера
 void Game::newGameWithComputer() {
     this->newOnlineGame();
-//    this->texture.player1Name.setString("Player");
-//    this->texture.player2Name.setString("Computer");
-//    this->texture.player1Name.setPosition(1020,795);    // Установка координат вывода слова
-//    this->texture.player2Name.setPosition(1010,93);     // Поправка для длинного слова computer
+//    this->texture.white.setString("Player");
+//    this->texture.black.setString("Computer");
+//    this->texture.white.setPosition(1020,795);    // Установка координат вывода слова
+//    this->texture.black.setPosition(1010,93);     // Поправка для длинного слова computer
 //    opponentComputer = true;
 //    board.setStateGame(StateGame::GameOn);  // Установка активного режима игры
 //    board.setBoardByFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); // Fen Start Board
@@ -469,22 +474,30 @@ void Game::drawGame() {
     board.drawBoard(window);            // Отрисовка доски и фигур
     switch (board.getStateGame()) {      // Получить состояние игры
         case StateGame::GameOn:
+//            texture.nowMove.setString("Move: " + (board.itWhiteMoveNow() ? texture.white.getString() : texture.black.getString()));
+            texture.nowMove.setString("Move: " + (board.itWhiteMoveNow() ? std::string("White") : std::string("Black") ));
+
             window.draw(texture.sidebarInProcessGame);  // Вывод текстуры процесса игры
+            window.draw(texture.nowMove);
             break;
-        case StateGame::Player1Win:     // В зависимости от соперника вывожу соответствующую надпись
-            if (opponentComputer) texture.resultGame.setTexture(texture.playerWinImg);
-            else texture.resultGame.setTexture(texture.player1WinImg);
+        case StateGame::WhiteWin:     // В зависимости от соперника вывожу соответствующую надпись
+            if (opponentComputer)
+                texture.resultGame.setString("\tWin:\nPlayer");
+            else
+                texture.resultGame.setString("\tWin:\n  White");
             window.draw(texture.sidebarEndGame);
             window.draw(texture.resultGame);
             break;
-        case StateGame::Player2Win:     // В зависимости от соперника вывожу соответствующую надпись
-            if (opponentComputer) texture.resultGame.setTexture(texture.computerWinImg);
-            else texture.resultGame.setTexture(texture.player2WinImg);
+        case StateGame::BlackWin:     // В зависимости от соперника вывожу соответствующую надпись
+            if (opponentComputer)
+                texture.resultGame.setString("\tWin:\nComputer");
+            else
+                texture.resultGame.setString("\tWin:\n  Black");
             window.draw(texture.sidebarEndGame);
             window.draw(texture.resultGame);
             break;
         case StateGame::Draw:           // Ничья
-            texture.resultGame.setTexture(texture.drawImg);
+            texture.resultGame.setString("   Draw");
             window.draw(texture.sidebarEndGame);
             window.draw(texture.resultGame);
             break;
@@ -494,8 +507,8 @@ void Game::drawGame() {
         case StateGame::Exit:
             return;
     }
-    window.draw(texture.player1Name);
-    window.draw(texture.player2Name);
+    window.draw(texture.white);
+    window.draw(texture.black);
 }
 
 // Сохранение или восстановление игры
@@ -609,10 +622,10 @@ void Game::restoreGameWithComputer() {
 //    board.setStateGame(StateGame::GameOn);
 //    if (this->saveOrReturnGame(false)) {
 //        // Установка Игроков
-//        this->texture.player1Name.setString("Player");
-//        this->texture.player2Name.setString("Computer");
-//        this->texture.player1Name.setPosition(1020,795);    // Установка координат вывода слова
-//        this->texture.player2Name.setPosition(1010,93);
+//        this->texture.white.setString("Player");
+//        this->texture.black.setString("Computer");
+//        this->texture.white.setPosition(1020,795);    // Установка координат вывода слова
+//        this->texture.black.setPosition(1010,93);
 //        opponentComputer = true;
 //        try {
 //            if (!stockFish.startStockFish())            // Запуск Stockfish
@@ -635,10 +648,10 @@ void Game::restoreGameWithComputer() {
 // Восстановить игру с игроком
 void Game::restoreGameWithFriend() {
     // Установка Игроков и состояния игры на Gameon
-    this->texture.player1Name.setString("Player 1");
-    this->texture.player2Name.setString("Player 2");
-    this->texture.player1Name.setPosition(1020, 795);    // Установка координат вывода слова
-    this->texture.player2Name.setPosition(1020, 93);
+    this->texture.white.setString("Player 1");
+    this->texture.black.setString("Player 2");
+    this->texture.white.setPosition(1020, 795);    // Установка координат вывода слова
+    this->texture.black.setPosition(1020, 93);
     board.setStateGame(StateGame::GameOn);
     opponentComputer = false;
     // Считывание истории игры из файла в дек, установка доски, запуск игрвого цикла
@@ -670,22 +683,11 @@ void Game::changeStyle() {
 
 
 
-
-
-
-
-
 void Game::newOnlineGame() {
     NetworkClient typeClient;
+    this->texture.nowMove.setPosition(993, 225);
     typeClient = this->selectHost();
-//    if (typeClient == NetworkClient::Host)     // true - host
-//        network.start(NetworkClient::Host);
-//    else network.start(NetworkClient::Client);
-    if (typeClient == NetworkClient::Host)
-        std::cout << "Choose: host" << std::endl;
-    else
-        std::cout << "Choose: host" << std::endl;
-    this->startNetwork(typeClient);  // new thread
+    this->startNetwork(typeClient);
 }
 
 NetworkClient Game::selectHost() {
@@ -708,9 +710,39 @@ NetworkClient Game::selectHost() {
                 return NetworkClient::Client;
         }
     }
-    return NetworkClient::Host; /////////////////////////
+    return NetworkClient::Host;
 }
 
+void Game::startNetwork(NetworkClient typeClient) {
+    int result = 0;     // 1 - success / 2 - fail
+    if (typeClient == NetworkClient::Host) {
+        int serverSocket;
+        threadForNetwork = std::thread(&Game::establishConnectionHost, this, &serverSocket, &result);
+        if (!this->waitConnect(&result)) {
+            close(serverSocket);
+            if (threadForNetwork.joinable()) {
+                threadForNetwork.join();
+            }
+            return;
+        }
+        threadForNetwork.join();
+    } else if (typeClient == NetworkClient::Client) {
+        if (!this->establishConnectionClient())
+            return;
+    }
+    this->texture.white.setString("Host");
+    this->texture.black.setString("Client");
+    texture.sidebarInProcessGame.setTexture(texture.sidebarInProcessGameOnlineImg);
+    texture.sidebarEndGame.setTexture(texture.sidebarEndGameOnlineImg);
+    this->texture.white.setPosition(1025, 795);    // Установка координат вывода слова
+    this->texture.black.setPosition(1020, 93);
+    board.setStateGame(StateGame::GameOn);
+    opponentComputer = false;                 // false - игра против друга; true - игра против компьютера
+    board.setBoardByFen(board.getStartFEN());
+    std::atomic<bool> newMsg = false;
+    threadForNetwork = std::thread(&Game::opponentAction, this, typeClient, &newMsg);
+    processNetworkGame(typeClient, &newMsg);
+}
 
 void *Game::establishConnectionHost(int* serverSocket, int *result) {
     sockaddr_in serveAddress{}, clientAddress{};
@@ -747,9 +779,8 @@ void *Game::establishConnectionHost(int* serverSocket, int *result) {
         mutex.unlock();
 
     }
-    std::cout << "Server started, listening on port " << PORT << std::endl;
 
-
+    fflush(stdout);
     int flags = fcntl(*serverSocket, F_GETFL, 0);
     fcntl(*serverSocket, F_SETFL, flags | O_NONBLOCK);
     // Принимаем входящее соединение
@@ -793,7 +824,8 @@ std::string Game::getIpAddress() {
     std::ifstream file("tmp.txt");
     std::getline(file, ipAddress);
     file.close();
-    remove("tmp.txt");
+    std::cout << ipAddress << std::endl << std::endl;
+//    remove("tmp.txt");
     return ipAddress;
 }
 
@@ -803,7 +835,7 @@ bool Game::waitConnect(const int *result) {
     int marginButtonX = 540;         // Отступ по У
     int sizeButtonX = 120;            // Размер кнопки по Х
     int sizeButtonY = 35;            // Размер кнопки по У
-    std::string myIpAddress = this->getIpAddress();
+    std::string myIpAddress = Game::getIpAddress();
     texture.ipAddress.setString("Your IP: " + myIpAddress);
     texture.ipAddress.setPosition(475,465);
     window.draw(texture.waitConnection);
@@ -817,7 +849,6 @@ bool Game::waitConnect(const int *result) {
         }
         if (*result == 2) {     // error
             mutex.unlock();
-            std::cout << "EXIT";
             return false;
         }
         mutex.unlock();
@@ -825,14 +856,11 @@ bool Game::waitConnect(const int *result) {
         event.mouseButton.button == sf::Mouse::Left &&
             (event.mouseButton.y > marginButtonY && event.mouseButton.y < marginButtonY + sizeButtonY) &&
             (event.mouseButton.x > marginButtonX && event.mouseButton.x < marginButtonX + sizeButtonX)) {
-            std::cout << "exitWait";
-            fflush(stdout);
             return false;
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
-
 
 void Game::startNetwork(NetworkClient typeClient) {
     int result = 0;     // 1 - success / 2 - fail
@@ -840,15 +868,9 @@ void Game::startNetwork(NetworkClient typeClient) {
         int serverSocket;
         threadForNetwork = std::thread(&Game::establishConnectionHost, this, &serverSocket, &result);
         if (!this->waitConnect(&result)) {
-            std::cout << "Close";
-            fflush(stdout);
             close(serverSocket);
             if (threadForNetwork.joinable()) {
-                std::cout << "Can join";
-                fflush(stdout);
                 threadForNetwork.join();
-                std::cout << "join";
-                fflush(stdout);
             }
             return;
         }
@@ -857,19 +879,21 @@ void Game::startNetwork(NetworkClient typeClient) {
         if (!this->establishConnectionClient())
             return;
     }
-
+    this->texture.white.setString("Host");
+    this->texture.black.setString("Client");
+    texture.sidebarInProcessGame.setTexture(texture.sidebarInProcessGameOnlineImg);
+    texture.sidebarEndGame.setTexture(texture.sidebarEndGameOnlineImg);
+    this->texture.white.setPosition(1025, 795);    // Установка координат вывода слова
+    this->texture.black.setPosition(1020, 93);
     board.setStateGame(StateGame::GameOn);
     opponentComputer = false;                 // false - игра против друга; true - игра против компьютера
     board.setBoardByFen(board.getStartFEN());
     std::atomic<bool> newMsg = false;
-    threadForNetwork = std::thread(&Game::waitOpponentAction, this, &newMsg);
-    std::cout << "REad thREAD READY";
-    fflush(stdout);
+    threadForNetwork = std::thread(&Game::opponentAction, this, typeClient, &newMsg);
     processNetworkGame(typeClient, &newMsg);
-    threadForNetwork.join();
-    std::cout << "I end";
 }
-bool Game::waitClickWithRefresh() {
+
+bool Game::waitClickWithRefresh(std::atomic<bool>* newMsg) {
     while (window.isOpen()) {
         if (window.pollEvent(event)) {  // Ожидание события
             if (event.type == sf::Event::Closed) {
@@ -879,11 +903,45 @@ bool Game::waitClickWithRefresh() {
                 return true;    // Если было нажатие ЛКМ - true
             }
         }
-        this->drawGame();
-        window.display();
+        if (newMsg->load()) {
+            return false;
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     return false;
+}
+
+void Game::endNetworkGame() {
+    int marginSidebarX = 960;       // Отступ слева по Х
+    int marginSidebarYFirst = 466;  // Отступ справа по У для первого эл-та
+    int sizeButtonY = 71;           // Размер кнопки У
+    int sizeButtonX = 202;          // Размер кнопки Х
+    int distanceButton = 100;       // Расстояние между кнопками
+    shutdown(clientSocket,SHUT_RDWR);
+    close(clientSocket);
+    if (threadForNetwork.joinable())
+        threadForNetwork.join();
+    // Если поставил мат, нужно завершить поток
+//    this->drawGame();
+//    window.display();
+    while (this->waitClick()) {       // Ожидание нажатия ЛКМ
+        // Получить кнопку, на которую нажали
+        if (event.mouseButton.x > marginSidebarX &&
+            event.mouseButton.x < marginSidebarX + sizeButtonX) {
+            if (event.mouseButton.y > marginSidebarYFirst &&
+                event.mouseButton.y < marginSidebarYFirst + sizeButtonY) {      // Нажал на сохранение игры
+                this->saveOrReturnGame(true);
+                this->drawGame();
+                window.display();
+                continue;
+            } else if (event.mouseButton.y > marginSidebarYFirst + distanceButton &&
+                       event.mouseButton.y < marginSidebarYFirst + distanceButton + sizeButtonY) {      // Нажал на exit
+                board.clearBoard();             // Очистка доски
+                board.setStateGame(StateGame::Exit);    // Изменение состояние игры
+                return;
+            }
+        }
+    }
 }
 
 void Game::processNetworkGame(NetworkClient typeClient, std::atomic<bool>* newMsg) {
@@ -891,13 +949,20 @@ void Game::processNetworkGame(NetworkClient typeClient, std::atomic<bool>* newMs
         this->drawGame();
         window.display();
         board.checkOnMate();
-        newMsg->store(false);
+        if (board.getStateGame() != StateGame::GameOn) {
+            this->endNetworkGame();
+            return;
+        }
         if (newMsg->load()) {
             newMsg->store(false);
             continue;
         }
         playerAction(typeClient, newMsg);
     }
+    shutdown(clientSocket,SHUT_RDWR);
+    close(clientSocket);
+    if (threadForNetwork.joinable())
+        threadForNetwork.join();
 }
 
 
@@ -905,12 +970,8 @@ void Game::playerAction(NetworkClient typeClient, std::atomic<bool>* newMsg) {
     bool flHaveMove{false}; // Флаг был ли ход
     Coordinates coordinatesClick1{}, coordinatesClick2{};
     std::vector<Coordinates> availableCoordinates;
-    while (!flHaveMove && this->waitClickWithRefresh()) {                  // Цикл пока не будет хода
-        if (newMsg->load()) {
-            newMsg->store(false);
-            return;
-        }
-//        mutex.lock();
+    while (!flHaveMove && this->waitClickWithRefresh(newMsg)) {                  // Цикл пока не будет хода
+        mutex.lock();
         if (getCoordinatesPressedBox(coordinatesClick1) &&
             (typeClient == NetworkClient::Host && board.itWhiteMoveNow() ||
              typeClient == NetworkClient::Client && !board.itWhiteMoveNow()) &&
@@ -920,15 +981,17 @@ void Game::playerAction(NetworkClient typeClient, std::atomic<bool>* newMsg) {
             availableCoordinates = board.getMove(coordinatesClick1.y, coordinatesClick1.x);
             // Получить доступные координаты хода и вывести их
             this->drawGame();
+            mutex.unlock();
             board.drawAvailableMove(window, availableCoordinates);
             window.display();
             // Ожидание второго нажатия, куда ходит фигура
-            if (this->waitClick()) {
+            if (this->waitClickWithRefresh(newMsg)) {
                 if (getCoordinatesPressedBox(coordinatesClick2))
                     for (Coordinates coordinatesMove: availableCoordinates)
                         if (coordinatesClick2 ==
                             coordinatesMove) { // Если координаты нажатия равны доступным для хода координатам
                             flHaveMove = true;
+                            mutex.lock();
                             board.move(coordinatesClick1, coordinatesClick2);   // Меняю состояние доски
                             // Проверка прохода пешки
                             if (board.map[coordinatesClick2.y][coordinatesClick2.x]->getType() ==
@@ -936,31 +999,107 @@ void Game::playerAction(NetworkClient typeClient, std::atomic<bool>* newMsg) {
                                 (coordinatesClick2.y == 0 || coordinatesClick2.y == 7)) {
                                 board.pawnPromotion(window, coordinatesClick2);
                             }
+                            mutex.unlock();
                             send(clientSocket, board.generationFenString().c_str(), 100, 0);
                             break;
                         }
-            }
-        } else if (clickSidebar())  // Если было нажатие на боковую панель, выйти из цикла
+            } else return;
+
+        } else if (clickSidebarInNetworkGame(typeClient)) { // Если было нажатие на боковую панель, выйти из цикла
+            mutex.unlock();
             break;
+        }
         this->drawGame();
         window.display();
+        mutex.unlock();
     }
 }
 
-void *Game::waitOpponentAction(std::atomic<bool>* newMsg) {
+bool Game::clickSidebarInNetworkGame(NetworkClient typeClient) {
+    int marginSidebarX = 960;       // Отступ слева по Х
+    int marginSidebarYFirst = 366;  // Отступ сверху по У для первого эл-та
+    int sizeButtonY = 71;           // Размер кнопки У
+    int sizeButtonX = 202;          // Размер кнопки Х
+    int distanceButton = 100;       // Расстояние между кнопками
+    if (event.mouseButton.x > marginSidebarX && event.mouseButton.x < marginSidebarX + sizeButtonX) {
+        SidebarInOnlineGameProcess choose;
+        for (int i = 0; i < 3; i++) {    // Получить тип нажатой кнопки
+            if (event.mouseButton.y > marginSidebarYFirst + i * distanceButton &&
+                event.mouseButton.y < marginSidebarYFirst + i * distanceButton + sizeButtonY) {
+                choose = static_cast<SidebarInOnlineGameProcess>(i);
+                break;
+            }
+        }
+        switch (choose) {
+            case SidebarInOnlineGameProcess::GiveUp:  // Сдаться
+                if (this->confirmation()) {     // Запрашиваю подтверждение
+                    board.giveUp();             // Сдаться
+                    if (typeClient == NetworkClient::Host)
+                        board.setStateGame(StateGame::BlackWin);
+                    else
+                        board.setStateGame(StateGame::WhiteWin);
+                    send(clientSocket,"GiveUp", 100, 0);
+                    return true;
+                }
+                break;
+            case SidebarInOnlineGameProcess::Save:    // Сохранение игры
+                if (this->saveOrReturnGame(true))
+                    return true;
+                break;
+            case SidebarInOnlineGameProcess::Exit:    // Выход из игры
+                if (this->confirmation()) {
+                    board.clearBoard();         // Очистка доски
+                    board.setStateGame(StateGame::Exit);
+                    send(clientSocket, "Exit", 100, 0);
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    return false;
+}
+
+ActionInternetOpponent Game::waitOpponentAction(std::atomic<bool>* newMsg ,char* msg) const{
+    std::cout << "Wait new MSG";
+    ssize_t bytesReceived = recv(clientSocket, msg, 100, 0);
+    if (bytesReceived == 0 || bytesReceived == 1){
+        std::cerr << "Error receiving data" << std::endl;
+        fflush(stderr);
+        return ActionInternetOpponent::GiveUp;      // Считаю что игрок вышел и == победе
+    }
+    std::cout << "MSG GET";
+    newMsg->store(true);
+    std::cout << msg;
+    fflush(stdout);
+    if (strcmp(msg, "Exit") == 0)
+        return ActionInternetOpponent::Exit;
+    else if (strcmp(msg, "GiveUp") == 0)
+        return ActionInternetOpponent::GiveUp;
+    else
+        return ActionInternetOpponent::Move;
+}
+
+void Game::opponentAction(NetworkClient typeClient, std::atomic<bool>* newMsg) {
     char msg[100];
-    while (1){
-        recv(clientSocket, msg, 100, 0);
-        for(char i : msg){
-            if (i == '/') {
+    while (true){
+        switch (this->waitOpponentAction(newMsg, msg)) {
+            case ActionInternetOpponent::Move:
                 mutex.lock();
+                board.addFenInDeq(board.generationFenString());
                 board.moveTransition();
                 board.setBoardByFen(msg);
                 mutex.unlock();
                 break;
-            }
+            case ActionInternetOpponent::GiveUp:
+            case ActionInternetOpponent::Exit:
+                if (typeClient == NetworkClient::Host)
+                    board.setStateGame(StateGame::WhiteWin);
+                else if (typeClient == NetworkClient::Client)
+                    board.setStateGame(StateGame::BlackWin);
+                return;
         }
-        newMsg->store(true);
     }
 }
 
@@ -1006,5 +1145,7 @@ bool Game::inputServerIp(sockaddr_in serverAddress) {
     }
     return false;
 }
+
+
 
 

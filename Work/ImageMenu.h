@@ -8,16 +8,16 @@
 
 class ImageMenu{                // Класс изображений меню
 private:
-    sf::Texture startMenuImg, sidebarInProcessWatchImg, confirmationImg, inputFileNameImg, sidebarInProcessGameImg,
-    sidebarEndGameImg, chooseHostOrClientImg, waitConnectionImg, inputIpImg; // текстуры
+    sf::Texture startMenuImg, sidebarInProcessWatchImg, confirmationImg, inputFileNameImg,
+    chooseHostOrClientImg, waitConnectionImg, inputIpImg; // текстуры
     bool blackStyle;
 public:
-    sf::Texture player1WinImg,player2WinImg,playerWinImg,computerWinImg,drawImg;
+    sf::Texture sidebarInProcessGameOnlineImg,sidebarInProcessGameImg, sidebarEndGameImg, sidebarEndGameOnlineImg;
     sf::Font fontInput,fontPlayer;                                                                      // Шрифт
     sf::Image icon;                                                                     // Иконка
-    sf::Text playerText, player1Name,player2Name, ipAddress;                                       // Текст
+    sf::Text playerText, white,black, ipAddress, resultGame, nowMove;                                       // Текст
     sf::Sprite startMenu, sidebarInProcessGame, sidebarInProcessWatch,                    // Спрайты
-    confirmation, inputFileName, sidebarEndGame, resultGame ,  chooseHostOrClient, waitConnection, inputIp;
+    confirmation, inputFileName, sidebarEndGame,  chooseHostOrClient, waitConnection, inputIp;
 
     ImageMenu(){                                       // Загрузка, установка изображений и координат
         blackStyle = true;
@@ -33,13 +33,21 @@ public:
         ipAddress.setCharacterSize(23);
         ipAddress.setFillColor(sf::Color::Black);
 
-        player1Name.setFont(fontPlayer);
-        player1Name.setCharacterSize(23);
-        player1Name.setFillColor(sf::Color::White);
+        resultGame.setFont(fontInput);
+        resultGame.setCharacterSize(23);
+        resultGame.setFillColor(sf::Color::Black);
 
-        player2Name.setFont(fontPlayer);
-        player2Name.setCharacterSize(23);
-        player2Name.setFillColor(sf::Color::Black);
+        white.setFont(fontPlayer);
+        white.setCharacterSize(23);
+        white.setFillColor(sf::Color::White);
+
+        nowMove.setFont(fontPlayer);
+        nowMove.setCharacterSize(22);
+        nowMove.setFillColor(sf::Color::Black);
+
+        black.setFont(fontPlayer);
+        black.setCharacterSize(23);
+        black.setFillColor(sf::Color::Black);
 
         startMenuImg.loadFromFile("image/startMenuDarkStyle.png");
 
@@ -48,15 +56,14 @@ public:
         sidebarInProcessWatchImg.loadFromFile("image/sidebarInProcessWatchDarkStyle.png");
         confirmationImg.loadFromFile("image/confirmationDarkStyle.png");
         inputFileNameImg.loadFromFile("image/inputFileNameDarkStyle.png");
-        player1WinImg.loadFromFile("image/winPlayer1.png");
-        player2WinImg.loadFromFile("image/winPlayer2.png");
-        computerWinImg.loadFromFile("image/winComputer.png");
-        playerWinImg.loadFromFile("image/winPlayer.png");
-        drawImg.loadFromFile("image/draw.png");
 
-        chooseHostOrClientImg.loadFromFile("image/chooseHostOrClient.png");
-        waitConnectionImg.loadFromFile("image/waitConnection.png");
-        inputIpImg.loadFromFile("image/inputIp.png");
+
+        chooseHostOrClientImg.loadFromFile("image/chooseHostOrClientDarkStyle.png");
+        waitConnectionImg.loadFromFile("image/waitConnectionDarkStyle.png");
+        inputIpImg.loadFromFile("image/inputIpDarkStyle.png");
+
+        sidebarInProcessGameOnlineImg.loadFromFile("image/sidebarInProcessGameOnlineDarkStyle.png");
+        sidebarEndGameOnlineImg.loadFromFile("image/sidebarEndGameOnlineDarkStyle.png");
 
 
         startMenu.setTexture(startMenuImg);
@@ -82,8 +89,8 @@ public:
 
         playerText.setPosition(465,458);
         ipAddress.setPosition(465,458);
-
-        resultGame.setPosition(920,200);
+        nowMove.setPosition(993, 173);
+        resultGame.setPosition(1010,200);
     }
 
     void changeStyle(){
@@ -94,6 +101,14 @@ public:
             sidebarInProcessWatchImg.loadFromFile("image/sidebarInProcessWatchWhiteStyle.png");
             confirmationImg.loadFromFile("image/confirmationWhiteStyle.png");
             inputFileNameImg.loadFromFile("image/inputFileNameWhiteStyle.png");
+
+            chooseHostOrClientImg.loadFromFile("image/chooseHostOrClientWhiteStyle.png");
+            waitConnectionImg.loadFromFile("image/waitConnectionWhiteStyle.png");
+            inputIpImg.loadFromFile("image/inputIpWhiteStyle.png");
+
+            sidebarInProcessGameOnlineImg.loadFromFile("image/sidebarInProcessGameOnlineWhiteStyle.png");
+            sidebarEndGameOnlineImg.loadFromFile("image/sidebarEndGameOnlineWhiteStyle.png");
+
         }
         else{
             startMenuImg.loadFromFile("image/startMenuDarkStyle.png");
@@ -102,6 +117,14 @@ public:
             sidebarInProcessWatchImg.loadFromFile("image/sidebarInProcessWatchDarkStyle.png");
             confirmationImg.loadFromFile("image/confirmationDarkStyle.png");
             inputFileNameImg.loadFromFile("image/inputFileNameDarkStyle.png");
+
+            chooseHostOrClientImg.loadFromFile("image/chooseHostOrClientDarkStyle.png");
+            waitConnectionImg.loadFromFile("image/waitConnectionDarkStyle.png");
+            inputIpImg.loadFromFile("image/inputIpDarkStyle.png");
+
+            sidebarInProcessGameOnlineImg.loadFromFile("image/sidebarInProcessGameOnlineDarkStyle.png");
+            sidebarEndGameOnlineImg.loadFromFile("image/sidebarEndGameOnlineDarkStyle.png");
+
         }
         blackStyle = !blackStyle;
     }

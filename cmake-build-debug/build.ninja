@@ -50,6 +50,7 @@ cmake_ninja_workdir = /home/bobr/CLionProjects/MyChees/cmake-build-debug/
 build cmake_object_order_depends_target_PlayHost: phony || CMakeFiles/PlayHost.dir
 
 build CMakeFiles/PlayHost.dir/Work/main.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/main.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/main.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -57,6 +58,7 @@ build CMakeFiles/PlayHost.dir/Work/main.cpp.o: CXX_COMPILER__PlayHost_unscanned_
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Board.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Board.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Board.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -64,6 +66,7 @@ build CMakeFiles/PlayHost.dir/Work/Board.cpp.o: CXX_COMPILER__PlayHost_unscanned
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Knight.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Knight.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Knight.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -71,6 +74,7 @@ build CMakeFiles/PlayHost.dir/Work/Knight.cpp.o: CXX_COMPILER__PlayHost_unscanne
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Rook.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Rook.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Rook.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -78,6 +82,7 @@ build CMakeFiles/PlayHost.dir/Work/Rook.cpp.o: CXX_COMPILER__PlayHost_unscanned_
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Figure.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Figure.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Figure.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -85,6 +90,7 @@ build CMakeFiles/PlayHost.dir/Work/Figure.cpp.o: CXX_COMPILER__PlayHost_unscanne
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Pawn.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Pawn.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Pawn.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -92,6 +98,7 @@ build CMakeFiles/PlayHost.dir/Work/Pawn.cpp.o: CXX_COMPILER__PlayHost_unscanned_
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Bishop.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Bishop.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Bishop.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -99,6 +106,7 @@ build CMakeFiles/PlayHost.dir/Work/Bishop.cpp.o: CXX_COMPILER__PlayHost_unscanne
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Queen.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Queen.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Queen.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -106,6 +114,7 @@ build CMakeFiles/PlayHost.dir/Work/Queen.cpp.o: CXX_COMPILER__PlayHost_unscanned
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/King.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/King.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/King.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -113,6 +122,7 @@ build CMakeFiles/PlayHost.dir/Work/King.cpp.o: CXX_COMPILER__PlayHost_unscanned_
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/Game.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Game.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/Game.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -120,6 +130,7 @@ build CMakeFiles/PlayHost.dir/Work/Game.cpp.o: CXX_COMPILER__PlayHost_unscanned_
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
 build CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/StockFish.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -134,9 +145,9 @@ build CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o: CXX_COMPILER__PlayHost_unsca
 #############################################
 # Link the executable PlayHost
 
-build PlayHost: CXX_EXECUTABLE_LINKER__PlayHost_Debug CMakeFiles/PlayHost.dir/Work/main.cpp.o CMakeFiles/PlayHost.dir/Work/Board.cpp.o CMakeFiles/PlayHost.dir/Work/Knight.cpp.o CMakeFiles/PlayHost.dir/Work/Rook.cpp.o CMakeFiles/PlayHost.dir/Work/Figure.cpp.o CMakeFiles/PlayHost.dir/Work/Pawn.cpp.o CMakeFiles/PlayHost.dir/Work/Bishop.cpp.o CMakeFiles/PlayHost.dir/Work/Queen.cpp.o CMakeFiles/PlayHost.dir/Work/King.cpp.o CMakeFiles/PlayHost.dir/Work/Game.cpp.o CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o | SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-d.so.2.6.1 SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-audio-d.so.2.6.1 SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-d.so.2.6.1 SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-d.so.2.6.1
+build PlayHost: CXX_EXECUTABLE_LINKER__PlayHost_Debug CMakeFiles/PlayHost.dir/Work/main.cpp.o CMakeFiles/PlayHost.dir/Work/Board.cpp.o CMakeFiles/PlayHost.dir/Work/Knight.cpp.o CMakeFiles/PlayHost.dir/Work/Rook.cpp.o CMakeFiles/PlayHost.dir/Work/Figure.cpp.o CMakeFiles/PlayHost.dir/Work/Pawn.cpp.o CMakeFiles/PlayHost.dir/Work/Bishop.cpp.o CMakeFiles/PlayHost.dir/Work/Queen.cpp.o CMakeFiles/PlayHost.dir/Work/King.cpp.o CMakeFiles/PlayHost.dir/Work/Game.cpp.o CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o | SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-s-d.a SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-s-d.a /usr/lib64/libX11.so /usr/lib64/libXrandr.so /usr/lib64/libXcursor.so SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-s-d.a /usr/lib64/libOpenGL.so /usr/lib64/libudev.so /usr/lib64/libfreetype.so
   FLAGS = -g
-  LINK_LIBRARIES = -Wl,-rpath,/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-d.so.2.6.1  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-audio-d.so.2.6.1  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-d.so.2.6.1  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-d.so.2.6.1
+  LINK_LIBRARIES = SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-s-d.a  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-s-d.a  /usr/lib64/libX11.so  /usr/lib64/libXrandr.so  /usr/lib64/libXcursor.so  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-s-d.a  -lpthread  -lrt  /usr/lib64/libOpenGL.so  /usr/lib64/libudev.so  -ldl  /usr/lib64/libfreetype.so
   OBJECT_DIR = CMakeFiles/PlayHost.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -153,6 +164,7 @@ build PlayHost: CXX_EXECUTABLE_LINKER__PlayHost_Debug CMakeFiles/PlayHost.dir/Wo
 build cmake_object_order_depends_target_PlayClient: phony || CMakeFiles/PlayClient.dir
 
 build CMakeFiles/PlayClient.dir/Work/main.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/main.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/main.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -160,6 +172,7 @@ build CMakeFiles/PlayClient.dir/Work/main.cpp.o: CXX_COMPILER__PlayClient_unscan
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Board.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Board.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Board.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -167,6 +180,7 @@ build CMakeFiles/PlayClient.dir/Work/Board.cpp.o: CXX_COMPILER__PlayClient_unsca
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Knight.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Knight.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Knight.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -174,6 +188,7 @@ build CMakeFiles/PlayClient.dir/Work/Knight.cpp.o: CXX_COMPILER__PlayClient_unsc
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Rook.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Rook.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Rook.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -181,6 +196,7 @@ build CMakeFiles/PlayClient.dir/Work/Rook.cpp.o: CXX_COMPILER__PlayClient_unscan
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Figure.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Figure.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Figure.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -188,6 +204,7 @@ build CMakeFiles/PlayClient.dir/Work/Figure.cpp.o: CXX_COMPILER__PlayClient_unsc
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Pawn.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Pawn.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Pawn.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -195,6 +212,7 @@ build CMakeFiles/PlayClient.dir/Work/Pawn.cpp.o: CXX_COMPILER__PlayClient_unscan
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Bishop.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Bishop.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Bishop.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -202,6 +220,7 @@ build CMakeFiles/PlayClient.dir/Work/Bishop.cpp.o: CXX_COMPILER__PlayClient_unsc
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Queen.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Queen.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Queen.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -209,6 +228,7 @@ build CMakeFiles/PlayClient.dir/Work/Queen.cpp.o: CXX_COMPILER__PlayClient_unsca
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/King.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/King.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/King.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -216,6 +236,7 @@ build CMakeFiles/PlayClient.dir/Work/King.cpp.o: CXX_COMPILER__PlayClient_unscan
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/Game.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Game.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/Game.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
@@ -223,7 +244,16 @@ build CMakeFiles/PlayClient.dir/Work/Game.cpp.o: CXX_COMPILER__PlayClient_unscan
   OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
 
 build CMakeFiles/PlayClient.dir/Work/StockFish.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/StockFish.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles/PlayClient.dir/Work/StockFish.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
+  OBJECT_DIR = CMakeFiles/PlayClient.dir
+  OBJECT_FILE_DIR = CMakeFiles/PlayClient.dir/Work
+
+build CMakeFiles/PlayClient.dir/Work/Network.cpp.o: CXX_COMPILER__PlayClient_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Network.cpp || cmake_object_order_depends_target_PlayClient
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles/PlayClient.dir/Work/Network.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
   OBJECT_DIR = CMakeFiles/PlayClient.dir
@@ -237,9 +267,9 @@ build CMakeFiles/PlayClient.dir/Work/StockFish.cpp.o: CXX_COMPILER__PlayClient_u
 #############################################
 # Link the executable PlayClient
 
-build PlayClient: CXX_EXECUTABLE_LINKER__PlayClient_Debug CMakeFiles/PlayClient.dir/Work/main.cpp.o CMakeFiles/PlayClient.dir/Work/Board.cpp.o CMakeFiles/PlayClient.dir/Work/Knight.cpp.o CMakeFiles/PlayClient.dir/Work/Rook.cpp.o CMakeFiles/PlayClient.dir/Work/Figure.cpp.o CMakeFiles/PlayClient.dir/Work/Pawn.cpp.o CMakeFiles/PlayClient.dir/Work/Bishop.cpp.o CMakeFiles/PlayClient.dir/Work/Queen.cpp.o CMakeFiles/PlayClient.dir/Work/King.cpp.o CMakeFiles/PlayClient.dir/Work/Game.cpp.o CMakeFiles/PlayClient.dir/Work/StockFish.cpp.o | SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-d.so.2.6.1 SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-audio-d.so.2.6.1 SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-d.so.2.6.1 SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-d.so.2.6.1
+build PlayClient: CXX_EXECUTABLE_LINKER__PlayClient_Debug CMakeFiles/PlayClient.dir/Work/main.cpp.o CMakeFiles/PlayClient.dir/Work/Board.cpp.o CMakeFiles/PlayClient.dir/Work/Knight.cpp.o CMakeFiles/PlayClient.dir/Work/Rook.cpp.o CMakeFiles/PlayClient.dir/Work/Figure.cpp.o CMakeFiles/PlayClient.dir/Work/Pawn.cpp.o CMakeFiles/PlayClient.dir/Work/Bishop.cpp.o CMakeFiles/PlayClient.dir/Work/Queen.cpp.o CMakeFiles/PlayClient.dir/Work/King.cpp.o CMakeFiles/PlayClient.dir/Work/Game.cpp.o CMakeFiles/PlayClient.dir/Work/StockFish.cpp.o CMakeFiles/PlayClient.dir/Work/Network.cpp.o | SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-s-d.a SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-s-d.a /usr/lib64/libX11.so /usr/lib64/libXrandr.so /usr/lib64/libXcursor.so SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-s-d.a /usr/lib64/libOpenGL.so /usr/lib64/libudev.so /usr/lib64/libfreetype.so
   FLAGS = -g
-  LINK_LIBRARIES = -Wl,-rpath,/home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-d.so.2.6.1  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-audio-d.so.2.6.1  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-d.so.2.6.1  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-d.so.2.6.1
+  LINK_LIBRARIES = SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-s-d.a  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-s-d.a  /usr/lib64/libX11.so  /usr/lib64/libXrandr.so  /usr/lib64/libXcursor.so  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-s-d.a  -lpthread  -lrt  /usr/lib64/libOpenGL.so  /usr/lib64/libudev.so  -ldl  /usr/lib64/libfreetype.so
   OBJECT_DIR = CMakeFiles/PlayClient.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -289,14 +319,14 @@ build all: phony PlayHost PlayClient
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-Initialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /home/bobr/CLionProjects/MyChees/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfig.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigDependencies.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigVersion.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLSharedTargets-debug.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLSharedTargets-release.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLSharedTargets.cmake
+build build.ninja: RERUN_CMAKE | /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-Initialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /home/bobr/CLionProjects/MyChees/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfig.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigDependencies.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigVersion.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLStaticTargets-debug.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLStaticTargets-release.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLStaticTargets.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-Initialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /home/bobr/CLionProjects/MyChees/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfig.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigDependencies.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigVersion.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLSharedTargets-debug.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLSharedTargets-release.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLSharedTargets.cmake: phony
+build /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-C.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU-CXX.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-GNU.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux-Initialize.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/Linux.cmake /home/bobr/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /home/bobr/CLionProjects/MyChees/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfig.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigDependencies.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLConfigVersion.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLStaticTargets-debug.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLStaticTargets-release.cmake SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/cmake/SFML/SFMLStaticTargets.cmake: phony
 
 
 #############################################
