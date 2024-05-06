@@ -23,6 +23,9 @@ void Game::start() {
             case SelectStartMenu::NewGameWithComputer:
                 this->newGameWithComputer();  // Начать новую игру с компьютером
                 break;
+            case SelectStartMenu::NewNetworkGame:
+                this->newOnlineGame();  // Начать новую игру с компьютером
+                break;
             case SelectStartMenu::RestoreGameWithFriend:
                 this->restoreGameWithFriend();  // Восстановить игру с другом
                 break;
@@ -97,29 +100,28 @@ bool Game::getCoordinatesPressedBox(Coordinates &coordinates) const {
 
 // Запуск новой игры против компьютера
 void Game::newGameWithComputer() {
-    this->newOnlineGame();
-//    this->texture.white.setString("Player");
-//    this->texture.black.setString("Computer");
-//    this->texture.white.setPosition(1020,795);    // Установка координат вывода слова
-//    this->texture.black.setPosition(1010,93);     // Поправка для длинного слова computer
-//    opponentComputer = true;
-//    board.setStateGame(StateGame::GameOn);  // Установка активного режима игры
-//    board.setBoardByFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); // Fen Start Board
-//    // Запуск "Stockfish"
-//    try {
-//        if (!stockFish.startStockFish())   // Запуск
-//            throw (ExceptionStockFish("Error start StockFish", -2));
-//        stockFish.sendStockFishCommand("uci");  // Стартовая команда
-//        int difficultyBot = 1;
-//        setDifficultyBot(difficultyBot);    // Установка сложности
-//        processGameWithComputer();          // Запуск цикла игры с компьютером
-//    }
-//    catch (ExceptionStockFish& err){        // Обработка исключения
-//        std::cout << err.what() << std::endl;
-//        std::cout << "Code error: " << err.code() << std::endl;
-//        return;
-//    }
-//    stockFish.closeStockFish();             // Закрыть Stockfish
+    this->texture.white.setString("Player");
+    this->texture.black.setString("Computer");
+    this->texture.white.setPosition(1020,795);    // Установка координат вывода слова
+    this->texture.black.setPosition(1010,93);     // Поправка для длинного слова computer
+    opponentComputer = true;
+    board.setStateGame(StateGame::GameOn);  // Установка активного режима игры
+    board.setBoardByFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); // Fen Start Board
+    // Запуск "Stockfish"
+    try {
+        if (!stockFish.startStockFish())   // Запуск
+            throw (ExceptionStockFish("Error start StockFish", -2));
+        stockFish.sendStockFishCommand("uci");  // Стартовая команда
+        int difficultyBot = 1;
+        setDifficultyBot(difficultyBot);    // Установка сложности
+        processGameWithComputer();          // Запуск цикла игры с компьютером
+    }
+    catch (ExceptionStockFish& err){        // Обработка исключения
+        std::cout << err.what() << std::endl;
+        std::cout << "Code error: " << err.code() << std::endl;
+        return;
+    }
+    stockFish.closeStockFish();             // Закрыть Stockfish
 }
 
 // Цикл игры с компьютером
@@ -163,17 +165,17 @@ void Game::moveComputer() {
 
 //    // Получить ход компьютера
 void Game::getMoveComputer(Coordinates &oldCoord, Coordinates &newCoord) {
-//    // Генерация FEN строки
-//    std::string fenCommand = "position fen " + board.generationFenString();
-//    stockFish.sendStockFishCommand(fenCommand);                     // отправляю fen в StockFish
-//    stockFish.sendStockFishCommand("go movetime 50 depth 5");       // Ограничения по времени и глубине
-//    std::string stockFishOutput = stockFish.readStockFishOutput(800); // Чтение вывода Stockfish
-//    std::cout << stockFishOutput <<std::endl;
-//    // Перевод строки в координаты
-//    oldCoord.y = static_cast<short int>('8' - stockFishOutput[1]);      // example msg = "e2e4"
-//    oldCoord.x = static_cast<short int>(stockFishOutput[0] - 'a');
-//    newCoord.y = static_cast<short int>('8' - stockFishOutput[3]);
-//    newCoord.x = static_cast<short int>(stockFishOutput[2] - 'a');
+    // Генерация FEN строки
+    std::string fenCommand = "position fen " + board.generationFenString();
+    stockFish.sendStockFishCommand(fenCommand);                     // отправляю fen в StockFish
+    stockFish.sendStockFishCommand("go movetime 50 depth 5");       // Ограничения по времени и глубине
+    std::string stockFishOutput = stockFish.readStockFishOutput(); // Чтение вывода Stockfish
+    std::cout << stockFishOutput <<std::endl;
+    // Перевод строки в координаты
+    oldCoord.y = static_cast<short int>('8' - stockFishOutput[1]);      // example msg = "e2e4"
+    oldCoord.x = static_cast<short int>(stockFishOutput[0] - 'a');
+    newCoord.y = static_cast<short int>('8' - stockFishOutput[3]);
+    newCoord.x = static_cast<short int>(stockFishOutput[2] - 'a');
 }
 
 // Ожидание нажатия ЛКМ
@@ -264,8 +266,13 @@ bool Game::writeInFile(std::string &nameFile) {
     if (!fileWrite.is_open()) {
         throw (ExceptionFile("Error create file", -2));
     }
+    std::cout << "BEFORE GOOOD";
+    fflush(stdout);
+
     board.writeDeqInFile(fileWrite);    // Запись истории партии в файл
     fileWrite.close();
+    std::cout << "WRITE GOOOD";
+    fflush(stdout);
     return true;
 }
 
@@ -427,6 +434,13 @@ void Game::drawStartMenu() {
 
 // Получить координаты нажатия стартового меню
 SelectStartMenu Game::getCoordinatesClickStartMenu() const {
+    int marginPlayVSFriendX = 120;
+    int marginPlayVSFriendY = 350;
+    int marginPlayVSComputerX = 790;
+    int marginPlayVSComputerY = 350;
+    int marginNetworkGameX = 455;
+    int marginNetworkGameY = 290;
+
     int marginFirstColumnBlockX = 280;      // Отступ по Х для первого столбца кнопок
     int marginSecondColumnBlockX = 640;     // Отступ по Х для второго столбца кнопок
     int sizeBlockX = 285;                   // Размер блоков по Х
@@ -440,11 +454,24 @@ SelectStartMenu Game::getCoordinatesClickStartMenu() const {
     int sizeStyleX = 91;
     int sizeStyleY = 38;
     // Диапазон первого столбца кнопок
-    if (event.mouseButton.x > marginFirstColumnBlockX && event.mouseButton.x < marginFirstColumnBlockX + sizeBlockX) {
-        if (event.mouseButton.y > marginFirstLineBlockY &&
-            event.mouseButton.y < marginFirstLineBlockY + sizeFirstLineBlockY)
-            return SelectStartMenu::NewGameWithFriend;
-        else if (event.mouseButton.y > marginSecondLineBlockY &&
+    if ((event.mouseButton.y > marginPlayVSFriendY &&
+        event.mouseButton.y < marginPlayVSFriendY + sizeFirstLineBlockY) &&
+        (event.mouseButton.x > marginPlayVSFriendX &&
+        event.mouseButton.x < marginPlayVSFriendX + sizeBlockX)) {
+        return SelectStartMenu::NewGameWithFriend;
+    }
+    else if ((event.mouseButton.y > marginPlayVSComputerY &&
+         event.mouseButton.y < marginPlayVSComputerY + sizeFirstLineBlockY) &&
+        (event.mouseButton.x > marginPlayVSComputerX &&
+         event.mouseButton.x < marginPlayVSComputerX + sizeBlockX))
+        return SelectStartMenu::NewGameWithComputer;
+    if ((event.mouseButton.y > marginNetworkGameY &&
+         event.mouseButton.y < marginNetworkGameY + sizeFirstLineBlockY) &&
+        (event.mouseButton.x > marginNetworkGameX &&
+         event.mouseButton.x < marginNetworkGameX + sizeBlockX))
+        return SelectStartMenu::NewNetworkGame;
+    else if (event.mouseButton.x > marginFirstColumnBlockX && event.mouseButton.x < marginFirstColumnBlockX + sizeBlockX) {
+        if (event.mouseButton.y > marginSecondLineBlockY &&
                  event.mouseButton.y < marginSecondLineBlockY + sizeNextLineBlockY)
             return SelectStartMenu::RestoreGameWithFriend;
         else if (event.mouseButton.y > marginThirdLineBlockY &&
@@ -455,6 +482,7 @@ SelectStartMenu Game::getCoordinatesClickStartMenu() const {
              event.mouseButton.x < marginSecondColumnBlockX + sizeBlockX) {
         if (event.mouseButton.y > marginFirstLineBlockY &&
             event.mouseButton.y < marginFirstLineBlockY + sizeFirstLineBlockY)
+
             return SelectStartMenu::NewGameWithComputer;
         else if (event.mouseButton.y > marginSecondLineBlockY &&
                  event.mouseButton.y < marginSecondLineBlockY + sizeNextLineBlockY)
@@ -679,18 +707,41 @@ void Game::changeStyle() {
     board.texture.changeStyle();
 }
 
-
-
-
-
-void Game::newOnlineGame() {
-    NetworkClient typeClient;
-    this->texture.nowMove.setPosition(993, 225);
-    typeClient = this->selectHost();
-    this->startNetwork(typeClient);
+bool Game::waitConnect(const int *result) {
+    this->drawStartMenu();               // Вывод игровой доски
+    int marginButtonY = 520;         // Отступ по У
+    int marginButtonX = 540;         // Отступ по У
+    int sizeButtonX = 120;            // Размер кнопки по Х
+    int sizeButtonY = 35;            // Размер кнопки по У
+    std::string myIpAddress = Network::getIpAddress();
+    texture.ipAddress.setString("Your IP: " + myIpAddress);
+    texture.ipAddress.setPosition(475,465);
+    window.draw(texture.waitConnection);
+    window.draw(texture.ipAddress);
+    window.display();
+    while (true) {
+        mutex.lock();
+        if (*result == 1) {
+            mutex.unlock();
+            return true;
+        }
+        if (*result == 2) {     // error
+            mutex.unlock();
+            return false;
+        }
+        mutex.unlock();
+        if (window.pollEvent(event) && event.type == sf::Event::MouseButtonPressed &&
+            event.mouseButton.button == sf::Mouse::Left &&
+            (event.mouseButton.y > marginButtonY && event.mouseButton.y < marginButtonY + sizeButtonY) &&
+            (event.mouseButton.x > marginButtonX && event.mouseButton.x < marginButtonX + sizeButtonX)) {
+            return false;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
 }
 
-NetworkClient Game::selectHost() {
+
+NetworkClient Game::selectTypeClient() {
     this->drawStartMenu();
     int marginFirstBlockX = 505;    // Отступ кнопки "yes" по Х
     int marginSecondBlockX = 625;   // Отступ кнопки "no" по Х
@@ -713,23 +764,15 @@ NetworkClient Game::selectHost() {
     return NetworkClient::Host;
 }
 
-void Game::startNetwork(NetworkClient typeClient) {
-    int result = 0;     // 1 - success / 2 - fail
-    if (typeClient == NetworkClient::Host) {
-        int serverSocket;
-        threadForNetwork = std::thread(&Game::establishConnectionHost, this, &serverSocket, &result);
-        if (!this->waitConnect(&result)) {
-            close(serverSocket);
-            if (threadForNetwork.joinable()) {
-                threadForNetwork.join();
-            }
-            return;
-        }
-        threadForNetwork.join();
-    } else if (typeClient == NetworkClient::Client) {
-        if (!this->establishConnectionClient())
-            return;
+
+void Game::newOnlineGame() {
+    this->texture.nowMove.setPosition(993, 225);
+    network.setTypeClient(this->selectTypeClient());
+
+    if (!this->setConnection()) {
+        return;
     }
+
     this->texture.white.setString("Host");
     this->texture.black.setString("Client");
     texture.sidebarInProcessGame.setTexture(texture.sidebarInProcessGameOnlineImg);
@@ -740,158 +783,103 @@ void Game::startNetwork(NetworkClient typeClient) {
     opponentComputer = false;                 // false - игра против друга; true - игра против компьютера
     board.setBoardByFen(board.getStartFEN());
     std::atomic<bool> newMsg = false;
-    threadForNetwork = std::thread(&Game::opponentAction, this, typeClient, &newMsg);
-    processNetworkGame(typeClient, &newMsg);
+
+    threadForNetwork = std::thread(&Game::opponentAction, this, network.getTypeClient(), &newMsg);
+    std::cout << "Skip thread";
+    processNetworkGame(network.getTypeClient(), &newMsg);
 }
 
-void *Game::establishConnectionHost(int* serverSocket, int *result) {
-    sockaddr_in serveAddress{}, clientAddress{};
-    int addrLen = sizeof(serveAddress);
-    getIpAddress();
-
-    // Создание сокета
-    if ((*serverSocket = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
-        std::cerr << "Socket creation failed" << std::endl;
-        mutex.lock();
-        *result = 2;
-        mutex.unlock();
-    }
-    int optval = 1;
-    if (setsockopt(*serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval)) < 0) {
-        std::cerr << "Error: Could not set SO_REUSEADDR option." << std::endl;
-    }
-    // Настройка сервера
-    serveAddress.sin_family = AF_INET;
-    serveAddress.sin_addr.s_addr = INADDR_ANY;
-    serveAddress.sin_port = htons(PORT);  // 9999
-    // Привязка сокета к адресу и порту
-    if (bind(*serverSocket, (struct sockaddr *) &serveAddress, sizeof(serveAddress)) < 0) {
-        std::cerr << "Bind failed" << std::endl;
-        mutex.lock();
-        *result = 2;
-        mutex.unlock();
-    }
-    // Слушаем входящие соединения
-    if (listen(*serverSocket, 1) < 0) {
-        std::cerr << "Listen failed" << std::endl;
-        mutex.lock();
-        *result = 2;
-        mutex.unlock();
-
-    }
-
-    fflush(stdout);
-    int flags = fcntl(*serverSocket, F_GETFL, 0);
-    fcntl(*serverSocket, F_SETFL, flags | O_NONBLOCK);
-    // Принимаем входящее соединение
-    while ((clientSocket = accept(*serverSocket, (struct sockaddr *) &clientAddress, (socklen_t *) &addrLen)) == -1) {
-        if (errno == EBADF) {
-            mutex.lock();
-            *result = 2;
-            mutex.unlock();
-            pthread_exit(nullptr);
+bool Game::setConnection() {
+    if (network.getTypeClient() == NetworkClient::Host) {
+        int serverSocket;
+        int result = 0;     // 1 - success / 2 - fail
+        threadForNetwork = std::thread(&Network::establishConnectionHost, &this->network, std::ref(serverSocket), std::ref(this->mutex), std::ref(result));
+        if (!this->waitConnect(&result)) {
+            close(serverSocket);
+            if (threadForNetwork.joinable()) {
+                threadForNetwork.join();
+            }
+            return false;
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        threadForNetwork.join();
     }
-
-    close(*serverSocket);
-    mutex.lock();
-    *result = 1;
-    mutex.unlock();
-    pthread_exit(nullptr);
-}
-
-bool Game::establishConnectionClient() {
-    sockaddr_in serverAddress{};
-    if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        std::cerr << "Socket creation failed" << std::endl;
-        return false;
+    else if (network.getTypeClient() == NetworkClient::Client) {
+        std::string ipAddress;
+        while (true) {
+            if (!this->inputServerIp2(&ipAddress))
+                return false;
+            if (network.establishConnectionClient(ipAddress))
+                break;
+        }
     }
-    int optVal = 1;
-    setsockopt(clientSocket, SOL_SOCKET, SO_REUSEADDR, &optVal, sizeof(optVal));
-    // Настройка сервера
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(PORT);
-
-    // input IP
-    return this->inputServerIp(serverAddress);
-
+    return true;
 }
 
-std::string Game::getIpAddress() {
-    std::string ipAddress;
-    system("hostname -I > tmp.txt");
-    std::ifstream file("tmp.txt");
-    std::getline(file, ipAddress);
-    file.close();
-    std::cout << ipAddress << std::endl << std::endl;
-//    remove("tmp.txt");
-    return ipAddress;
-}
-
-bool Game::waitConnect(const int *result) {
-    this->drawStartMenu();               // Вывод игровой доски
-    int marginButtonY = 520;         // Отступ по У
-    int marginButtonX = 540;         // Отступ по У
-    int sizeButtonX = 120;            // Размер кнопки по Х
-    int sizeButtonY = 35;            // Размер кнопки по У
-    std::string myIpAddress = Game::getIpAddress();
-    texture.ipAddress.setString("Your IP: " + myIpAddress);
-    texture.ipAddress.setPosition(475,465);
-    window.draw(texture.waitConnection);
-    window.draw(texture.ipAddress);
+bool Game::inputServerIp2(std::string* ipAddress) {
+    this->drawStartMenu();
+    window.draw(texture.inputIp);     // Установить текстуру ввода файла
     window.display();
-    while (true) {
-        mutex.lock();
-        if (*result == 1) {
-            mutex.unlock();
-            return true;
+    sf::String serverIP;                 // Отображение вводимых символов
+    texture.ipAddress.setString(serverIP);
+    texture.ipAddress.setPosition(465,458);
+    while (window.isOpen()) {
+        switch (this->clickToInputString()) {          // Получить тип события
+            case ClickToSaveOrReturnFile::InputText:
+                if (serverIP.getSize() < 20)    // Если размер меньше 20 ввожу символ
+                    serverIP += event.text.unicode;
+                break;
+            case ClickToSaveOrReturnFile::RemoveSymbol:
+                if (serverIP.getSize() != 0)     // Если размер не 0, то удаляю элемент
+                    serverIP.erase(serverIP.getSize() - 1, 1);
+                break;
+            case ClickToSaveOrReturnFile::Save:
+                *ipAddress = serverIP;
+                return true;
+            case ClickToSaveOrReturnFile::Exit:
+                return false;
+            case ClickToSaveOrReturnFile::Default:
+                break;
         }
-        if (*result == 2) {     // error
-            mutex.unlock();
-            return false;
-        }
-        mutex.unlock();
-        if (window.pollEvent(event) && event.type == sf::Event::MouseButtonPressed &&
-        event.mouseButton.button == sf::Mouse::Left &&
-            (event.mouseButton.y > marginButtonY && event.mouseButton.y < marginButtonY + sizeButtonY) &&
-            (event.mouseButton.x > marginButtonX && event.mouseButton.x < marginButtonX + sizeButtonX)) {
-            return false;
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        this->drawStartMenu();
+        window.draw(texture.inputIp); // Вывожу текстуру ввода файла
+        texture.ipAddress.setString(serverIP);  // Вывожу введенную строку
+        window.draw(texture.ipAddress);
+        window.display();
     }
+    return false;
 }
 
-void Game::startNetwork(NetworkClient typeClient) {
-    int result = 0;     // 1 - success / 2 - fail
-    if (typeClient == NetworkClient::Host) {
-        int serverSocket;
-        threadForNetwork = std::thread(&Game::establishConnectionHost, this, &serverSocket, &result);
-        if (!this->waitConnect(&result)) {
-            close(serverSocket);
-            if (threadForNetwork.joinable()) {
-                threadForNetwork.join();
-            }
-            return;
-        }
-        threadForNetwork.join();
-    } else if (typeClient == NetworkClient::Client) {
-        if (!this->establishConnectionClient())
-            return;
-    }
-    this->texture.white.setString("Host");
-    this->texture.black.setString("Client");
-    texture.sidebarInProcessGame.setTexture(texture.sidebarInProcessGameOnlineImg);
-    texture.sidebarEndGame.setTexture(texture.sidebarEndGameOnlineImg);
-    this->texture.white.setPosition(1025, 795);    // Установка координат вывода слова
-    this->texture.black.setPosition(1020, 93);
-    board.setStateGame(StateGame::GameOn);
-    opponentComputer = false;                 // false - игра против друга; true - игра против компьютера
-    board.setBoardByFen(board.getStartFEN());
-    std::atomic<bool> newMsg = false;
-    threadForNetwork = std::thread(&Game::opponentAction, this, typeClient, &newMsg);
-    processNetworkGame(typeClient, &newMsg);
-}
+//void Game::startNetwork() {
+//    int result = 0;     // 1 - success / 2 - fail
+//    if (network.getTypeClient() == NetworkClient::Host) {
+//        int serverSocket;
+//        threadForNetwork = std::thread(&Network::establishConnectionHost, this->network, &serverSocket, &result);
+//        if (!this->waitConnect(&result)) {
+//            close(serverSocket);
+//            if (threadForNetwork.joinable()) {
+//                threadForNetwork.join();
+//            }
+//            return;
+//        }
+//        threadForNetwork.join();
+//    } else if (network.getTypeClient() == NetworkClient::Client) {
+//        if (!this->establishConnectionClient())
+//            return;
+//    }
+//    this->texture.white.setString("Host");
+//    this->texture.black.setString("Client");
+//    texture.sidebarInProcessGame.setTexture(texture.sidebarInProcessGameOnlineImg);
+//    texture.sidebarEndGame.setTexture(texture.sidebarEndGameOnlineImg);
+//    this->texture.white.setPosition(1025, 795);    // Установка координат вывода слова
+//    this->texture.black.setPosition(1020, 93);
+//    board.setStateGame(StateGame::GameOn);
+//    opponentComputer = false;                 // false - игра против друга; true - игра против компьютера
+//    board.setBoardByFen(board.getStartFEN());
+//    std::atomic<bool> newMsg = false;
+//    threadForNetwork = std::thread(&Game::opponentAction, this, typeClient, &newMsg);
+//    processNetworkGame(typeClient, &newMsg);
+//}
+
 
 bool Game::waitClickWithRefresh(std::atomic<bool>* newMsg) {
     while (window.isOpen()) {
@@ -917,8 +905,8 @@ void Game::endNetworkGame() {
     int sizeButtonY = 71;           // Размер кнопки У
     int sizeButtonX = 202;          // Размер кнопки Х
     int distanceButton = 100;       // Расстояние между кнопками
-    shutdown(clientSocket,SHUT_RDWR);
-    close(clientSocket);
+    shutdown(network.getClientSocket(),SHUT_RDWR);
+    close(network.getClientSocket());
     if (threadForNetwork.joinable())
         threadForNetwork.join();
     // Если поставил мат, нужно завершить поток
@@ -959,8 +947,8 @@ void Game::processNetworkGame(NetworkClient typeClient, std::atomic<bool>* newMs
         }
         playerAction(typeClient, newMsg);
     }
-    shutdown(clientSocket,SHUT_RDWR);
-    close(clientSocket);
+    shutdown(network.getClientSocket(),SHUT_RDWR);
+    close(network.getClientSocket());
     if (threadForNetwork.joinable())
         threadForNetwork.join();
 }
@@ -971,6 +959,7 @@ void Game::playerAction(NetworkClient typeClient, std::atomic<bool>* newMsg) {
     Coordinates coordinatesClick1{}, coordinatesClick2{};
     std::vector<Coordinates> availableCoordinates;
     while (!flHaveMove && this->waitClickWithRefresh(newMsg)) {                  // Цикл пока не будет хода
+
         mutex.lock();
         if (getCoordinatesPressedBox(coordinatesClick1) &&
             (typeClient == NetworkClient::Host && board.itWhiteMoveNow() ||
@@ -1000,7 +989,7 @@ void Game::playerAction(NetworkClient typeClient, std::atomic<bool>* newMsg) {
                                 board.pawnPromotion(window, coordinatesClick2);
                             }
                             mutex.unlock();
-                            send(clientSocket, board.generationFenString().c_str(), 100, 0);
+                            send(network.getClientSocket(), board.generationFenString().c_str(), 100, 0);
                             break;
                         }
             } else return;
@@ -1038,19 +1027,22 @@ bool Game::clickSidebarInNetworkGame(NetworkClient typeClient) {
                         board.setStateGame(StateGame::BlackWin);
                     else
                         board.setStateGame(StateGame::WhiteWin);
-                    send(clientSocket,"GiveUp", 100, 0);
+                    send(network.getClientSocket(),"GiveUp", 100, 0);
                     return true;
                 }
                 break;
             case SidebarInOnlineGameProcess::Save:    // Сохранение игры
-                if (this->saveOrReturnGame(true))
+                if (this->saveOrReturnGame(true)) {
+                    std::cout << "SAVE GOOD\n";
+                    fflush(stdout);
                     return true;
+                }
                 break;
             case SidebarInOnlineGameProcess::Exit:    // Выход из игры
                 if (this->confirmation()) {
                     board.clearBoard();         // Очистка доски
                     board.setStateGame(StateGame::Exit);
-                    send(clientSocket, "Exit", 100, 0);
+                    send(network.getClientSocket(), "Exit", 100, 0);
                     return true;
                 }
                 break;
@@ -1063,7 +1055,8 @@ bool Game::clickSidebarInNetworkGame(NetworkClient typeClient) {
 
 ActionInternetOpponent Game::waitOpponentAction(std::atomic<bool>* newMsg ,char* msg) const{
     std::cout << "Wait new MSG";
-    ssize_t bytesReceived = recv(clientSocket, msg, 100, 0);
+    ssize_t bytesReceived = read(network.getClientSocket(), msg, 100);
+    //    ssize_t bytesReceived = recv(network.getClientSocket(), msg, 100, 0);
     if (bytesReceived == 0 || bytesReceived == 1){
         std::cerr << "Error receiving data" << std::endl;
         fflush(stderr);
@@ -1099,52 +1092,17 @@ void Game::opponentAction(NetworkClient typeClient, std::atomic<bool>* newMsg) {
                 else if (typeClient == NetworkClient::Client)
                     board.setStateGame(StateGame::BlackWin);
                 return;
+            case ActionInternetOpponent::Undefined:
+                break;
         }
     }
 }
 
-bool Game::inputServerIp(sockaddr_in serverAddress) {
-    this->drawStartMenu();
-    window.draw(texture.inputIp);     // Установить текстуру ввода файла
-    window.display();
-    sf::String serverIP;                 // Отображение вводимых символов
-    texture.ipAddress.setString(serverIP);
-    texture.ipAddress.setPosition(465,458);
 
-    while (window.isOpen()) {
-        switch (this->clickToInputString()) {          // Получить тип события
-            case ClickToSaveOrReturnFile::InputText:
-                if (serverIP.getSize() < 20)    // Если размер меньше 20 ввожу символ
-                    serverIP += event.text.unicode;
-                break;
-            case ClickToSaveOrReturnFile::RemoveSymbol:
-                if (serverIP.getSize() != 0)     // Если размер не 0, то удаляю элемент
-                    serverIP.erase(serverIP.getSize() - 1, 1);
-                break;
-            case ClickToSaveOrReturnFile::Save:
-                if (inet_pton(AF_INET, serverIP.toAnsiString().c_str(), &serverAddress.sin_addr) <= 0) {
-                    std::cerr << "Invalid address/ Address not supported" << std::endl;
-                    break;
-                }
-                // Подключение к серверу
-                if (connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0) {
-                    std::cerr << "Connection failed" << std::endl;
-                    break;
-                }
-                return true;
-            case ClickToSaveOrReturnFile::Exit:
-                return false;
-            case ClickToSaveOrReturnFile::Default:
-                break;
-        }
-        this->drawStartMenu();
-        window.draw(texture.inputIp); // Вывожу текстуру ввода файла
-        texture.ipAddress.setString(serverIP);  // Вывожу введенную строку
-        window.draw(texture.ipAddress);
-        window.display();
-    }
-    return false;
-}
+
+
+
+
 
 
 

@@ -6,25 +6,28 @@
 #define COURSEWORK_STOCKFISH_H
 
 //#include <Windows.h>
+#include <mutex>
 #include "iostream"
 #include "chrono"
 #include "vector"
-class StockFish{};
+//class StockFish{};
 
-//class StockFish {                   // Класс взаимодействия с "Stockfish"
-//private:
-//    STARTUPINFO si{0};              // Информация для создания второго потока
-//    PROCESS_INFORMATION pi{0};      // Информация в процессе работы потока
-//    SECURITY_ATTRIBUTES saAttr{0};  // атрибуты доступа
-//    HANDLE hStdinRead{},hStdinWrite{},hStdoutRead{},hStdoutWrite{},hStderrRead{},hStderrWrite{}; // дескрипторы для работы с потоком
-//public:
-//    StockFish()= default;
-//    ~StockFish();                   // деструктор закрывает поток
-//    bool startStockFish();          // Создание потока и запуск Stockfish
-//    void closeStockFish();          // Закрыть поток
-//    void sendStockFishCommand(std::string);     // Отправка сообщения Stockfish
-//    std::string readStockFishOutput(DWORD delayMillis);     // Получение сообщения от Stockfish
-//};
+class StockFish {                   // Класс взаимодействия с "Stockfish"
+private:
+//    std::mutex mutex;
+//    std::thread threadForNetwork;
+    std::string sendMsg;
+    std::string readMsg;
+    int stdinWrite;
+    int stdoutRead;
+public:
+    StockFish()= default;
+    bool startStockFish();          // Создание потока и запуск Stockfish
+    void sendStockFishCommand(std::string msg) const;
+    std::string readStockFishOutput() const;
+    void closeStockFish() const;          // Закрыть поток
+    ~StockFish();                   // деструктор закрывает поток
+};
 
 
 #endif //COURSEWORK_STOCKFISH_H

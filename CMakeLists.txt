@@ -41,6 +41,8 @@ add_executable(PlayHost
         Work/Exceptions.h
         Work/MyDeque.h
         Work/Algorithms.h
+        Work/Network.cpp
+        Work/Network.h
 )
 
 

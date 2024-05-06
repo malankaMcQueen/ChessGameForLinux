@@ -4,8 +4,87 @@
 #include <thread>
 #include "StockFish.h"
 #include "Exceptions.h"
+#include <unistd.h>
+#include <sys/wait.h>
+#include <iostream>
+#include "Exceptions.h"
+
+bool StockFish::startStockFish() {
+    int stdin_pipe[2];
+    int stdout_pipe[2];
+    // Создание каналов
+    if (pipe(stdin_pipe) == -1 || pipe(stdout_pipe) == -1) {
+        std::cerr << "Failed to create pipes\n";
+        return false;
+    }
+
+    // Создание нового процесса
+    pid_t pid = fork();
+    if (pid == -1) {
+        std::cerr << "Failed to fork\n";
+        return false;
+    } else if (pid == 0) { // В дочернем процессе
+        // Замена стандартного ввода и вывода дочернего процесса на каналы
+        close(stdin_pipe[1]);
+        dup2(stdin_pipe[0], STDIN_FILENO);
+        close(stdout_pipe[0]);
+        dup2(stdout_pipe[1], STDOUT_FILENO);
+        execl("./stockfish/stockfish-ubuntu-x86-64-sse41-popcnt", "stockfish", nullptr);
+        // Если execl вернется, значит возникла ошибка
+        std::cerr << "Failed to execute Stockfish\n";
+        exit(EXIT_FAILURE);
+    }
+    // В родительском процессе закрываем концы каналов, которые не используются
+    close(stdin_pipe[0]);
+    close(stdout_pipe[1]);
+     this->stdinWrite = stdin_pipe[1];
+     this->stdoutRead = stdout_pipe[0];
+    return true;
+}
+
+void StockFish::closeStockFish() const {
+    // Здесь вы можете отправить команду "quit" в Stockfish, если это необходимо
+     write(this->stdinWrite, "quit\n", 5);
+     close(this->stdinWrite);
+     close(this->stdoutRead);
+}
+
+void StockFish::sendStockFishCommand(std::string msg) const {
+    msg += '\n';
+    std::cout << msg << std::endl;
+    write(this->stdinWrite, msg.c_str(), msg.length());
+}
+
+std::string StockFish::readStockFishOutput() const {
+    std::this_thread::sleep_for(std::chrono::milliseconds (200));
+    char buffer[2048];
+    std::string str;
+    ssize_t bytesRead;
+    do{
+        bytesRead = read(this->stdoutRead, buffer, sizeof(buffer));
+        str += buffer;
+    } while (sizeof(buffer) == bytesRead);
+
+    std::cout << str;
+    fflush(stdout);
+//        do {
+//        if (!ReadFile(hStdoutRead, buffer, sizeof(buffer), &bytesRead, nullptr))
+//            throw (ExceptionStockFish("Error read StockFish output", -3));
+//        str += buffer;
+//    } while (sizeof(buffer)  == bytesRead);
+    // Поиска подстроки bestmove
+    int n = static_cast<int>(str.find("bestmove"));
+    if (n == -1)    // Если подстрока не найдена
+        throw (ExceptionStockFish("Error read StockFish output", -3));
+    return str.substr(n+9,4); // Извлечение данных о ходе (e4e6)
+}
+
+StockFish::~StockFish() {
+    closeStockFish();
+}
 
 //bool StockFish::startStockFish() {
+
 //    // Обнуление памяти
 //    ZeroMemory(&si, sizeof(si));
 //    si.cb = sizeof(si);

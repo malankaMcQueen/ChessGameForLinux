@@ -6,6 +6,7 @@
 #define COURSEWORK_HEADER_H
 
 #include <vector>
+#include <iostream>
 #include "Exceptions.h"
 
 
@@ -22,7 +23,8 @@ enum class TypeFigure{
 enum class ActionInternetOpponent{
     Move,
     GiveUp,
-    Exit
+    Exit,
+    Undefined
 };
 
 enum class NetworkClient{
@@ -34,6 +36,7 @@ enum class SelectStartMenu{
     Default,
     NewGameWithFriend = 1,
     NewGameWithComputer,
+    NewNetworkGame,
     RestoreGameWithFriend,
     RestoreGameWithComputer,
     ViewingCompletedGames,

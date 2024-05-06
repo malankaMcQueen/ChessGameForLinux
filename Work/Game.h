@@ -8,6 +8,7 @@
 #include "Board.h"
 #include "iostream"
 #include "StockFish.h"
+#include "Network.h"
 #include <fstream>
 #include <thread>
 #include "ImageMenu.h"
@@ -30,9 +31,9 @@ private:
     sf::Event event{};                                    // Обработчик событий
     ImageMenu texture;                                  // изображения
     bool opponentComputer{};                            // установка компьютера соперником
+    Network network;
 
     std::mutex mutex;
-    int clientSocket{};
 //    const int PORT = 9999;
     std::thread threadForNetwork; // Переменная для потока в поле класса
 
@@ -72,16 +73,15 @@ private:
     ClickToSaveOrReturnFile clickToInputString();          // ввод и сохранение файла
     bool confirmation();                                // подтверждение действия
 
-    NetworkClient selectHost();
+
     void setDifficultyBot(int diff);                    // установить уровень игры компьютера
     void getMoveComputer(Coordinates& oldCoord, Coordinates& newCoord); // получение хода от компьютера
     void moveComputer();                                // ход компьютера
     bool waitClick();                                   // ожидание нажатия Левой кнопки мыши
 
-    void* establishConnectionHost(int* serverSocket, int* result);
-    bool establishConnectionClient();
-    void startNetwork(NetworkClient typeClient);
-    static std::string getIpAddress();
+    NetworkClient selectTypeClient();
+    void startNetwork();
+
 
     bool waitConnect(const int *result);
 
@@ -102,6 +102,10 @@ private:
     ActionInternetOpponent waitOpponentAction(std::atomic<bool> *newMsg, char *msg) const;
 
     void endNetworkGame();
+
+    bool setConnection();
+
+    bool inputServerIp2(std::string* ipAddress);
 };
 
 

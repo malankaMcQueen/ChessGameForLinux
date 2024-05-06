@@ -137,6 +137,14 @@ build CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o: CXX_COMPILER__PlayHost_unsca
   OBJECT_DIR = CMakeFiles/PlayHost.dir
   OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
 
+build CMakeFiles/PlayHost.dir/Work/Network.cpp.o: CXX_COMPILER__PlayHost_unscanned_Debug /home/bobr/CLionProjects/MyChees/Work/Network.cpp || cmake_object_order_depends_target_PlayHost
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles/PlayHost.dir/Work/Network.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -isystem /home/bobr/CLionProjects/MyChees/cmake-build-debug/SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/include
+  OBJECT_DIR = CMakeFiles/PlayHost.dir
+  OBJECT_FILE_DIR = CMakeFiles/PlayHost.dir/Work
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PlayHost
@@ -145,7 +153,7 @@ build CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o: CXX_COMPILER__PlayHost_unsca
 #############################################
 # Link the executable PlayHost
 
-build PlayHost: CXX_EXECUTABLE_LINKER__PlayHost_Debug CMakeFiles/PlayHost.dir/Work/main.cpp.o CMakeFiles/PlayHost.dir/Work/Board.cpp.o CMakeFiles/PlayHost.dir/Work/Knight.cpp.o CMakeFiles/PlayHost.dir/Work/Rook.cpp.o CMakeFiles/PlayHost.dir/Work/Figure.cpp.o CMakeFiles/PlayHost.dir/Work/Pawn.cpp.o CMakeFiles/PlayHost.dir/Work/Bishop.cpp.o CMakeFiles/PlayHost.dir/Work/Queen.cpp.o CMakeFiles/PlayHost.dir/Work/King.cpp.o CMakeFiles/PlayHost.dir/Work/Game.cpp.o CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o | SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-s-d.a SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-s-d.a /usr/lib64/libX11.so /usr/lib64/libXrandr.so /usr/lib64/libXcursor.so SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-s-d.a /usr/lib64/libOpenGL.so /usr/lib64/libudev.so /usr/lib64/libfreetype.so
+build PlayHost: CXX_EXECUTABLE_LINKER__PlayHost_Debug CMakeFiles/PlayHost.dir/Work/main.cpp.o CMakeFiles/PlayHost.dir/Work/Board.cpp.o CMakeFiles/PlayHost.dir/Work/Knight.cpp.o CMakeFiles/PlayHost.dir/Work/Rook.cpp.o CMakeFiles/PlayHost.dir/Work/Figure.cpp.o CMakeFiles/PlayHost.dir/Work/Pawn.cpp.o CMakeFiles/PlayHost.dir/Work/Bishop.cpp.o CMakeFiles/PlayHost.dir/Work/Queen.cpp.o CMakeFiles/PlayHost.dir/Work/King.cpp.o CMakeFiles/PlayHost.dir/Work/Game.cpp.o CMakeFiles/PlayHost.dir/Work/StockFish.cpp.o CMakeFiles/PlayHost.dir/Work/Network.cpp.o | SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-s-d.a SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-s-d.a /usr/lib64/libX11.so /usr/lib64/libXrandr.so /usr/lib64/libXcursor.so SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-s-d.a /usr/lib64/libOpenGL.so /usr/lib64/libudev.so /usr/lib64/libfreetype.so
   FLAGS = -g
   LINK_LIBRARIES = SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-graphics-s-d.a  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-window-s-d.a  /usr/lib64/libX11.so  /usr/lib64/libXrandr.so  /usr/lib64/libXcursor.so  SFML-2.6.1-linux-gcc-64-bit/SFML-2.6.1/lib/libsfml-system-s-d.a  -lpthread  -lrt  /usr/lib64/libOpenGL.so  /usr/lib64/libudev.so  -ldl  /usr/lib64/libfreetype.so
   OBJECT_DIR = CMakeFiles/PlayHost.dir
